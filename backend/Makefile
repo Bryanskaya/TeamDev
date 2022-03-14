@@ -1,5 +1,5 @@
 build: .
-	go build -o .\build .
+	go build -o .\temp .
 
 run: build
-	.\build\teamdev.exe
+	.\temp\teamdev.exe

@@ -21,9 +21,13 @@ func main()  {
 		utils.InitConfig(os.Args[1])
 	}
 
+	utils.InitLogger()
+	defer utils.CloseLogger()
 
 	r := mux.NewRouter()
 	r.HandleFunc("/test", getTest).Methods("GET")
+
+	utils.Logger.Print("Server started")
 	fmt.Printf("Server is running on http://localhost:%d\n", utils.Config.Port)
 	http.ListenAndServe(fmt.Sprintf(":%d", utils.Config.Port),  r)
 }
