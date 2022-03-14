@@ -1,4 +1,4 @@
-build: .
+build:
 	go build -o .\build .
 
 run: build
