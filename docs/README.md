@@ -2,7 +2,7 @@
 
 
 ## Use-case диаграмма системы.
-![image](/use_case.png)
+![image](/docs/use_case.png)
 
 ## ER-диаграмма сущностей системы.
-![image](/er.png)
+![image](/docs/er.png)
