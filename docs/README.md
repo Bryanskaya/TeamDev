@@ -1,0 +1,1 @@
+[Макет Figma](https://www.figma.com/file/QiUvqzk1k4BiVKIQIZzDf1/TeamDev?node-id=0%3A1)
