@@ -9,7 +9,26 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
+
+func initDBConnection(cnf utils.DBConfiguration) *gorm.DB {
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+		cnf.Host, cnf.User, cnf.Password, cnf.Name, cnf.Port)
+	db, e := gorm.Open(cnf.Type, dsn)
+
+	if e != nil {
+		utils.Logger.Print("DB Connection failed")
+		utils.Logger.Fatal(e)
+	} else {
+		utils.Logger.Print("DB Connection Established")
+	}
+
+	db.SingularTable(true)
+	return db
+}
 
 // @Title TeamDev API
 // @Version 0.1
@@ -27,7 +46,10 @@ func main()  {
 	utils.InitLogger()
 	defer utils.CloseLogger()
 
-	r := controllers.InitRouter(nil)
+	db := initDBConnection(utils.Config.DB)
+	defer db.Close()
+
+	r := controllers.InitRouter(db)
 	controllers.RunSwagger(r);
 
 	r.HandleFunc("/test", getTest).Methods("GET")

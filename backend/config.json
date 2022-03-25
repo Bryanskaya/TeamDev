@@ -3,7 +3,7 @@
         "type": "postgres",
         "user": "postgres", 
         "password": "postgres",
-        "host": "25.76.186.53",
+        "host": "25.20.169.28",
         "name": "recipes",
         "port": "5432"
     },
