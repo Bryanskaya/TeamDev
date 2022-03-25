@@ -7,7 +7,6 @@ import { ChakraProvider, Box, Text, Menu, Container } from "@chakra-ui/react";
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Fonts />
-    Hello worl
     <Home />
   </ChakraProvider>
 );
