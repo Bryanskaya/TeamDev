@@ -42,8 +42,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "TeamDev API",
-	Description:      "API for culinary recipes (BMSTU Team development project)",
+	Title:            "Recipes API",
+	Description:      "API for culinary recipes (BMSTU Web development cource project)",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

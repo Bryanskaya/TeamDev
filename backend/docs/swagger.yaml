@@ -1,7 +1,7 @@
 info:
   contact: {}
-  description: API for culinary recipes (BMSTU Team development project)
-  title: TeamDev API
+  description: API for culinary recipes (BMSTU Web development cource project)
+  title: Recipes API
   version: "0.1"
 paths:
   /categories:

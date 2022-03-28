@@ -3,6 +3,8 @@ package main
 import (
 	"api/teamdev/controllers"
 	"api/teamdev/utils"
+	_ "api/teamdev/docs"
+	
 	"encoding/json"
 	"fmt"
 	"math/rand"
@@ -34,7 +36,7 @@ func initDBConnection(cnf utils.DBConfiguration) *gorm.DB {
 // @Version 0.1
 // @Description API for culinary recipes (BMSTU Team development project)
 // @securityDefinitions.basic BasicAuth
-func main()  {
+func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	if len(os.Args) == 1 {
