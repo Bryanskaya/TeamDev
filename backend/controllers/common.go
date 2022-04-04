@@ -15,9 +15,10 @@ import (
 
 func initControllers(r *mux.Router, m *models.Models) {
 	r.Use(utils.LogHandler)
+	r.Use(auth.JwtAuthentication)
 
 	InitAccount(r, m.Accounts)
-	r.Use(auth.JwtAuthentication)
+	InitRecipes(r, m.Recipes)
 }
 
 func InitRouter(db *gorm.DB) *mux.Router {
