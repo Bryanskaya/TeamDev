@@ -8,6 +8,7 @@ import (
 
 type Models struct {
 	Accounts *AccountM
+	Recipes *RecipeM
 }
 
 func InitModels(db *gorm.DB) *Models {
