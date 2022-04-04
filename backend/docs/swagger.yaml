@@ -1,14 +1,137 @@
+definitions:
+  objects.AccountDTO:
+    properties:
+      login:
+        example: admin
+        type: string
+      password:
+        example: admin
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
 info:
   contact: {}
   description: API for culinary recipes (BMSTU Team development project)
   title: TeamDev API
   version: "0.1"
 paths:
+  /accounts:
+    post:
+      parameters:
+      - description: Account data
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Creates a new account
+      tags:
+      - Accounts
+  /accounts/{login}:
+    get:
+      parameters:
+      - description: Account login
+        in: path
+        name: login
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+      summary: Retrieves account
+      tags:
+      - Accounts
+  /accounts/{login}/role:
+    patch:
+      parameters:
+      - description: Account login
+        in: path
+        name: login
+        required: true
+        type: string
+      - description: Account data
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "403":
+          description: Forbidden
+          schema:
+            type: Access
+      summary: Change user's role
+      tags:
+      - Accounts
+  /accounts/login:
+    post:
+      parameters:
+      - description: Authentication data
+        in: body
+        name: account
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: User's authorization
+      tags:
+      - Accounts
+  /accounts/logout:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+      summary: Logging out
+      tags:
+      - Accounts
   /categories:
     get:
       produces:
       - application/json
-      responses: {}
       summary: Retrieves all categories
       tags:
       - Categories
