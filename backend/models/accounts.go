@@ -64,12 +64,13 @@ func (this *AccountM) Find(login string) (*objects.Account, error) {
 }
 
 func (this *AccountM) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
-	_, err := this.models.Recipes.FindById(id_rcp)
+	/*_, err := this.models.Recipes.FindById(id_rcp)
 	if err != nil {
 		return nil, errors.UnknownRecipe
 	}
 
-	return this.rep.FindLikedRecipe(id_rcp)
+	return this.rep.FindLikedRecipe(id_rcp)*/
+	return nil, errors.UnknownRecipe
 }
 
 func (this *AccountM) IsExists(login string) bool {
