@@ -35,7 +35,7 @@ func InitAccount(r *mux.Router, model *models.AccountM) {
 // @Success 200 {object} objects.AccountDTO
 // @Failure 400 Invalid value
 // @Failure 401 Authentication failed
-func (this *account) LogIn(w http.ResponseWriter, r *http.Request) {
+func (ctrl *account) LogIn(w http.ResponseWriter, r *http.Request) {
 	accDTO := &objects.AccountDTO{}
 
 	err := json.NewDecoder(r.Body).Decode(accDTO)
@@ -44,7 +44,7 @@ func (this *account) LogIn(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	acc, err := this.model.LogIn(accDTO.Login, accDTO.Password)
+	acc, err := ctrl.model.LogIn(accDTO.Login, accDTO.Password)
 	if err != nil {
 		responses.AuthenticationFailed(w)
 		return
@@ -58,7 +58,7 @@ func (this *account) LogIn(w http.ResponseWriter, r *http.Request) {
 // @Summary Logging out
 // @Produce json
 // @Success 200 Successful opeartion
-func (this *account) LogOut(w http.ResponseWriter, r *http.Request) {
+func (ctrl *account) LogOut(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   "",
@@ -78,7 +78,7 @@ func (this *account) LogOut(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Success 201 {object} objects.AccountDTO
 // @Failure 400 Invalid value
-func (this *account) add(w http.ResponseWriter, r *http.Request) {
+func (ctrl *account) add(w http.ResponseWriter, r *http.Request) {
 	accDTO := new(objects.AccountDTO)
 	err := json.NewDecoder(r.Body).Decode(accDTO)
 	if err != nil {
@@ -86,7 +86,7 @@ func (this *account) add(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.Create(accDTO.ToModel())
+	err = ctrl.model.Create(accDTO.ToModel())
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "Account creation was successful")
@@ -105,11 +105,11 @@ func (this *account) add(w http.ResponseWriter, r *http.Request) {
 // @Param login path string true "Account login"
 // @Produce json
 // @Success 200 {object} objects.AccountDTO
-func (this *account) get(w http.ResponseWriter, r *http.Request) {
+func (ctrl *account) get(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	login := urlParams["login"]
 
-	data, _ := this.model.Find(login)
+	data, _ := ctrl.model.Find(login)
 	responses.JsonSuccess(w, data.ToDTO())
 }
 
@@ -122,7 +122,7 @@ func (this *account) get(w http.ResponseWriter, r *http.Request) {
 // @Success 200 Successful operation
 // @Failure 400 Invalid value
 // @Failure 403 Access denied
-func (this *account) patch(w http.ResponseWriter, r *http.Request) {
+func (ctrl *account) patch(w http.ResponseWriter, r *http.Request) {
 	accDTO := new(objects.AccountDTO)
 	err := json.NewDecoder(r.Body).Decode(accDTO)
 	if err != nil {
@@ -139,7 +139,7 @@ func (this *account) patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.UpdateRole(cur_login, login, accDTO.Role)
+	err = ctrl.model.UpdateRole(cur_login, login, accDTO.Role)
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "Account updation was successful")

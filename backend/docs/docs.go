@@ -147,6 +147,39 @@ var doc = `{
                 }
             }
         },
+        "/accounts/{login}/like": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Retrieves all user's liked recipes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Requested account",
+                        "name": "login",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/objects.RecipeDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
+                        }
+                    }
+                }
+            }
+        },
         "/accounts/{login}/recipes": {
             "get": {
                 "produces": [
@@ -404,309 +437,3 @@ var doc = `{
                         }
                     }
                 }
-            },
-            "post": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Steps"
-                ],
-                "summary": "Posts step",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Recipe's id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Step",
-                        "name": "step",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/objects.StepDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/objects.StepDTO"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "type": "Invalid"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "Authentication"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "schema": {
-                            "type": "Access"
-                        }
-                    }
-                }
-            }
-        },
-        "/recipes/{id}/steps/{step}": {
-            "get": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Steps"
-                ],
-                "summary": "Retrieves recipe's step by its number",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Recipe's id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Step's number",
-                        "name": "step",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/objects.StepDTO"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "type": "Invalid"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Steps"
-                ],
-                "summary": "Removes step",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Recipe's id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Step's number",
-                        "name": "step",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "Successful"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "type": "Invalid"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "type": "Authentication"
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Steps"
-                ],
-                "summary": "Updates step",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Recipe's id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Step's number",
-                        "name": "step",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Step data",
-                        "name": "value",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/objects.StepDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "Successful"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "objects.AccountDTO": {
-            "type": "object",
-            "properties": {
-                "login": {
-                    "type": "string",
-                    "example": "admin"
-                },
-                "password": {
-                    "type": "string",
-                    "example": "admin"
-                },
-                "role": {
-                    "type": "string",
-                    "example": "admin"
-                }
-            }
-        },
-        "objects.RecipeDTO": {
-            "type": "object",
-            "properties": {
-                "author": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "duration": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "portion_num": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "objects.StepDTO": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "num": {
-                    "type": "integer"
-                },
-                "recipe": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        }
-    },
-    "securityDefinitions": {
-        "BasicAuth": {
-            "type": "basic"
-        }
-    }
-}`
-
-type swaggerInfo struct {
-	Version     string
-	Host        string
-	BasePath    string
-	Schemes     []string
-	Title       string
-	Description string
-}
-
-// SwaggerInfo holds exported Swagger Info so clients can modify it
-var SwaggerInfo = swaggerInfo{
-	Version:     "0.1",
-	Host:        "",
-	BasePath:    "",
-	Schemes:     []string{},
-	Title:       "TeamDev API",
-	Description: "API for culinary recipes (BMSTU Team development project)",
-}
-
-type s struct{}
-
-func (s *s) ReadDoc() string {
-	sInfo := SwaggerInfo
-	sInfo.Description = strings.Replace(sInfo.Description, "\n", "\\n", -1)
-
-	t, err := template.New("swagger_info").Funcs(template.FuncMap{
-		"marshal": func(v interface{}) string {
-			a, _ := json.Marshal(v)
-			return string(a)
-		},
-		"escape": func(v interface{}) string {
-			// escape tabs
-			str := strings.Replace(v.(string), "\t", "\\t", -1)
-			// replace " with \", and if that results in \\", replace that with \\\"
-			str = strings.Replace(str, "\"", "\\\"", -1)
-			return strings.Replace(str, "\\\\\"", "\\\\\\\"", -1)
-		},
-	}).Parse(doc)
-	if err != nil {
-		return doc
-	}
-
-	var tpl bytes.Buffer
-	if err := t.Execute(&tpl, sInfo); err != nil {
-		return doc
-	}
-
-	return tpl.String()
-}
-
-func init() {
-	swag.Register(swag.Name, &s{})
-}
