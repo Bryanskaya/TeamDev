@@ -3,6 +3,7 @@ package controllers
 import (
 	auth "api/teamdev/controllers/token"
 	"api/teamdev/utils"
+	"api/teamdev/models"
 	"fmt"
 	"net/http"
 
@@ -12,14 +13,18 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func initControllers(r *mux.Router) {
+func initControllers(r *mux.Router, m *models.Models) {
 	r.Use(utils.LogHandler)
+
+	InitAccount(r, m.Accounts)
 	r.Use(auth.JwtAuthentication)
 }
 
 func InitRouter(db *gorm.DB) *mux.Router {
 	router := mux.NewRouter()
-	initControllers(router)
+	models := models.InitModels(db)
+
+	initControllers(router, models)
 	return router
 }
 
