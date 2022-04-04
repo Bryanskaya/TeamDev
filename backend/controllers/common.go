@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	auth "api/teamdev/controllers/token"
 	"api/teamdev/utils"
 	"fmt"
 	"net/http"
@@ -13,6 +14,7 @@ import (
 
 func initControllers(r *mux.Router) {
 	r.Use(utils.LogHandler)
+	r.Use(auth.JwtAuthentication)
 }
 
 func InitRouter(db *gorm.DB) *mux.Router {
