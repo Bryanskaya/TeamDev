@@ -30,3 +30,11 @@ func HashPassword(password string, oldSalt ...string) (salt, hash string) {
 
 	return
 }
+
+/* Compare password and hash
+Confirming password with stored salt and hash
+*/
+func CmpPassword(password, salt, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password + salt))
+	return err == nil
+}
