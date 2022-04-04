@@ -140,6 +140,39 @@ const docTemplate = `{
                 }
             }
         },
+        "/accounts/{login}/like": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Retrieves all user's liked recipes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Requested account",
+                        "name": "login",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/objects.RecipeDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
+                        }
+                    }
+                }
+            }
+        },
         "/accounts/{login}/recipes": {
             "get": {
                 "produces": [
@@ -358,6 +391,181 @@ const docTemplate = `{
                         "description": "Forbidden",
                         "schema": {
                             "type": "Access"
+                        }
+                    }
+                }
+            }
+        },
+        "/recipes/{id}/isliked": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Retrieves true if user liked the recipe",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "bool"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
+                        }
+                    }
+                }
+            }
+        },
+        "/recipes/{id}/like": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Retrieves all users who liked mentioned recipe",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/objects.AccountDTO"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Adds like to recipe from authorized user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "Successful"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "Authentication"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Deletes like to recipe from authorized user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "Successful"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "Authentication"
+                        }
+                    }
+                }
+            }
+        },
+        "/recipes/{id}/like/amount": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Likes"
+                ],
+                "summary": "Retrieves the recipe's amount of likes",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "Invalid"
                         }
                     }
                 }
