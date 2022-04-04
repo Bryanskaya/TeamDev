@@ -19,7 +19,9 @@ func initControllers(r *mux.Router, m *models.Models) {
 
 	InitAccount(r, m.Accounts)
 	InitRecipes(r, m.Recipes)
+
 	InitLikes(r, m.Recipes, m.Accounts)
+	InitSteps(r, m.Steps)
 }
 
 func InitRouter(db *gorm.DB) *mux.Router {
