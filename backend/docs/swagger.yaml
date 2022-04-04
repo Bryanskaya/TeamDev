@@ -11,6 +11,23 @@ definitions:
         example: admin
         type: string
     type: object
+  objects.RecipeDTO:
+    properties:
+      author:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: integer
+      id:
+        type: integer
+      portion_num:
+        type: integer
+      title:
+        type: string
+    type: object
 info:
   contact: {}
   description: API for culinary recipes (BMSTU Team development project)
@@ -58,6 +75,26 @@ paths:
       summary: Retrieves account
       tags:
       - Accounts
+  /accounts/{login}/recipes:
+    get:
+      parameters:
+      - description: Category title
+        in: path
+        name: login
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.RecipeDTO'
+            type: array
+      summary: Retrieves user's recipes
+      tags:
+      - Recipes
   /accounts/{login}/role:
     patch:
       parameters:
@@ -136,6 +173,91 @@ paths:
       summary: Retrieves all categories
       tags:
       - Categories
+  /recipes:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.RecipeDTO'
+            type: array
+      summary: Retrieves all recipes
+      tags:
+      - Recipes
+    post:
+      parameters:
+      - description: Recipe data
+        in: body
+        name: recipe
+        required: true
+        schema:
+          $ref: '#/definitions/objects.RecipeDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/objects.RecipeDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: Creates a new recipe
+      tags:
+      - Recipes
+  /recipes/{id}:
+    delete:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+        "403":
+          description: Forbidden
+          schema:
+            type: Access
+      summary: Deletes the recipe
+      tags:
+      - Recipes
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.RecipeDTO'
+      summary: Retrieves recipe by its id
+      tags:
+      - Recipes
 securityDefinitions:
   BasicAuth:
     type: basic
