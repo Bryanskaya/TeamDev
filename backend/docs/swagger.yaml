@@ -11,6 +11,13 @@ definitions:
         example: admin
         type: string
     type: object
+  objects.IngredientDTO:
+    properties:
+      amount:
+        type: string
+      title:
+        type: string
+    type: object
   objects.RecipeDTO:
     properties:
       author:
@@ -268,6 +275,101 @@ paths:
       summary: Retrieves recipe by its id
       tags:
       - Recipes
+  /recipes/{id}/ingredients:
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.IngredientDTO'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves all recipe's ingredients
+      tags:
+      - Ingredients
+    post:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Ingredients
+        in: body
+        name: recipes
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/objects.IngredientDTO'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Posts all recipe's ingredients
+      tags:
+      - Ingredients
+    put:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Ingredient
+        in: body
+        name: recipe
+        required: true
+        schema:
+          $ref: '#/definitions/objects.IngredientDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Adds ingredient
+      tags:
+      - Ingredients
+  /recipes/{id}/ingredients/{title}:
+    delete:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Recipe's title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Removes ingredient
+      tags:
+      - Ingredients
   /recipes/{id}/steps:
     get:
       parameters:

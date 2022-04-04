@@ -19,6 +19,7 @@ func initControllers(r *mux.Router, m *models.Models) {
 
 	InitAccount(r, m.Accounts)
 	InitRecipes(r, m.Recipes)
+	InitIngredients(r, m.Ingredients)
 	InitSteps(r, m.Steps)
 }
 

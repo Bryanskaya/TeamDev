@@ -66,3 +66,9 @@ func JsonSuccess(w http.ResponseWriter, data interface{}) {
 	w.Header().Set("Response-Desc", "Success")
 	json.NewEncoder(w).Encode(data)
 }
+
+func SuccessCreation(w http.ResponseWriter, msg string) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(msg)
+}
