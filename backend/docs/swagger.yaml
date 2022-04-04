@@ -132,6 +132,7 @@ paths:
     get:
       produces:
       - application/json
+      responses: {}
       summary: Retrieves all categories
       tags:
       - Categories

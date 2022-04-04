@@ -188,7 +188,8 @@
                 "tags": [
                     "Categories"
                 ],
-                "summary": "Retrieves all categories"
+                "summary": "Retrieves all categories",
+                "responses": {}
             }
         }
     },
