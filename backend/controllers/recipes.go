@@ -32,8 +32,8 @@ func InitRecipes(r *mux.Router, model *models.RecipeM) {
 // @Summary Retrieves all recipes
 // @Produce json
 // @Success 200 {object} []objects.RecipeDTO
-func (this *recipe) getAllRecipes(w http.ResponseWriter, r *http.Request) {
-	data := this.model.GetAll()
+func (ctrl *recipe) getAllRecipes(w http.ResponseWriter, r *http.Request) {
+	data := ctrl.model.GetAll()
 	responses.JsonSuccess(w, objects.Recipe{}.ArrToDTO(data))
 }
 
@@ -43,10 +43,10 @@ func (this *recipe) getAllRecipes(w http.ResponseWriter, r *http.Request) {
 // @Param login path string true "Category title"
 // @Produce json
 // @Success 200 {object} []objects.RecipeDTO
-func (this *recipe) getRecipesByLogin(w http.ResponseWriter, r *http.Request) {
+func (ctrl *recipe) getRecipesByLogin(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	login := urlParams["login"]
-	data, _ := this.model.FindByLogin(login)
+	data, _ := ctrl.model.FindByLogin(login)
 	responses.JsonSuccess(w, objects.Recipe{}.ArrToDTO(data))
 }
 
@@ -56,7 +56,7 @@ func (this *recipe) getRecipesByLogin(w http.ResponseWriter, r *http.Request) {
 // @Param id path int true "Recipe's id"
 // @Produce json
 // @Success 200 {object} objects.RecipeDTO
-func (this *recipe) get(w http.ResponseWriter, r *http.Request) {
+func (ctrl *recipe) get(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -66,7 +66,7 @@ func (this *recipe) get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, _ := this.model.FindById(id)
+	data, _ := ctrl.model.FindById(id)
 	responses.JsonSuccess(w, data.ToDTO())
 }
 
@@ -78,7 +78,7 @@ func (this *recipe) get(w http.ResponseWriter, r *http.Request) {
 // @Success 201 {object} objects.RecipeDTO
 // @Failure 400 Invalid value
 // @Failure 401 Authentication failed
-func (this *recipe) addRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *recipe) addRecipe(w http.ResponseWriter, r *http.Request) {
 	rcpDTO := new(objects.RecipeDTO)
 	err := json.NewDecoder(r.Body).Decode(rcpDTO)
 	if err != nil {
@@ -94,7 +94,7 @@ func (this *recipe) addRecipe(w http.ResponseWriter, r *http.Request) {
 		rcpDTO.Author = login
 	}
 
-	err = this.model.AddRecipe(rcpDTO.ToModel())
+	err = ctrl.model.AddRecipe(rcpDTO.ToModel())
 	switch err {
 	case nil:
 		responses.JsonSuccess(w, rcpDTO) // FIXME: send created recipe
@@ -113,7 +113,7 @@ func (this *recipe) addRecipe(w http.ResponseWriter, r *http.Request) {
 // @Failure 400 Invalid value
 // @Failure 401 Authentication failed
 // @Failure 403 Access denied
-func (this *recipe) deleteRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *recipe) deleteRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -129,7 +129,7 @@ func (this *recipe) deleteRecipe(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.DeleteRecipe(id, login)
+	err = ctrl.model.DeleteRecipe(id, login)
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "Delete operation was successful")
