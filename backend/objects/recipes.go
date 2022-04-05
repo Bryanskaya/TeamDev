@@ -13,6 +13,7 @@ type Recipe struct {
 	Description string     		`json:"description"`
 	Duration    int 			`json:"duration"`
 	PortionNum  int				`json:"portion_num"`
+	PicUrl		string			`json:"pic_url"`
 
 	Categories []*Category		`gorm:"many2many:recipe_category;"`
 	Ingredients []*Ingredient	`gorm:"many2many:recipe_ingredient;"`
@@ -48,6 +49,7 @@ type RecipeDTO struct {
 	Description string     	`json:"description"`
 	Duration    int			`json:"duration"`
 	PortionNum  int			`json:"portion_num"`
+	PicUrl		string		`json:"pic_url"`
 }
 
 func (this *RecipeDTO) ToModel() *Recipe {

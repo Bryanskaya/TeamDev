@@ -982,6 +982,9 @@ const docTemplate = `{
                 "id": {
                     "type": "integer"
                 },
+                "pic_url": {
+                    "type": "string"
+                },
                 "portion_num": {
                     "type": "integer"
                 },
