@@ -1,0 +1,656 @@
+definitions:
+  objects.AccountDTO:
+    properties:
+      login:
+        example: admin
+        type: string
+      password:
+        example: admin
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
+  objects.IngredientDTO:
+    properties:
+      amount:
+        type: string
+      title:
+        type: string
+    type: object
+  objects.RecipeDTO:
+    properties:
+      author:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: integer
+      id:
+        type: integer
+      portion_num:
+        type: integer
+      title:
+        type: string
+    type: object
+  objects.StepDTO:
+    properties:
+      description:
+        type: string
+      num:
+        type: integer
+      recipe:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: API for culinary recipes (BMSTU Team development project)
+  title: TeamDev API
+  version: "0.1"
+paths:
+  /accounts:
+    post:
+      parameters:
+      - description: Account data
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Creates a new account
+      tags:
+      - Accounts
+  /accounts/{login}:
+    get:
+      parameters:
+      - description: Account login
+        in: path
+        name: login
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+      summary: Retrieves account
+      tags:
+      - Accounts
+  /accounts/{login}/like:
+    get:
+      parameters:
+      - description: Requested account
+        in: path
+        name: login
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.RecipeDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves all user's liked recipes
+      tags:
+      - Likes
+  /accounts/{login}/recipes:
+    get:
+      parameters:
+      - description: Category title
+        in: path
+        name: login
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.RecipeDTO'
+            type: array
+      summary: Retrieves user's recipes
+      tags:
+      - Recipes
+  /accounts/{login}/role:
+    patch:
+      parameters:
+      - description: Account login
+        in: path
+        name: login
+        required: true
+        type: string
+      - description: Account data
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "403":
+          description: Forbidden
+          schema:
+            type: Access
+      summary: Change user's role
+      tags:
+      - Accounts
+  /accounts/login:
+    post:
+      parameters:
+      - description: Authentication data
+        in: body
+        name: account
+        schema:
+          $ref: '#/definitions/objects.AccountDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.AccountDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: User's authorization
+      tags:
+      - Accounts
+  /accounts/logout:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+      summary: Logging out
+      tags:
+      - Accounts
+  /categories:
+    get:
+      produces:
+      - application/json
+      responses: {}
+      summary: Retrieves all categories
+      tags:
+      - Categories
+  /recipes:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.RecipeDTO'
+            type: array
+      summary: Retrieves all recipes
+      tags:
+      - Recipes
+    post:
+      parameters:
+      - description: Recipe data
+        in: body
+        name: recipe
+        required: true
+        schema:
+          $ref: '#/definitions/objects.RecipeDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/objects.RecipeDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: Creates a new recipe
+      tags:
+      - Recipes
+  /recipes/{id}:
+    delete:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+        "403":
+          description: Forbidden
+          schema:
+            type: Access
+      summary: Deletes the recipe
+      tags:
+      - Recipes
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.RecipeDTO'
+      summary: Retrieves recipe by its id
+      tags:
+      - Recipes
+  /recipes/{id}/ingredients:
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.IngredientDTO'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves all recipe's ingredients
+      tags:
+      - Ingredients
+    post:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Ingredients
+        in: body
+        name: recipes
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/objects.IngredientDTO'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Posts all recipe's ingredients
+      tags:
+      - Ingredients
+    put:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Ingredient
+        in: body
+        name: recipe
+        required: true
+        schema:
+          $ref: '#/definitions/objects.IngredientDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Adds ingredient
+      tags:
+      - Ingredients
+  /recipes/{id}/ingredients/{title}:
+    delete:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Recipe's title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Removes ingredient
+      tags:
+      - Ingredients
+  /recipes/{id}/isliked:
+    get:
+      parameters:
+      - description: Recipe id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: bool
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves true if user liked the recipe
+      tags:
+      - Likes
+  /recipes/{id}/like:
+    delete:
+      parameters:
+      - description: Recipe id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: Deletes like to recipe from authorized user
+      tags:
+      - Likes
+    get:
+      parameters:
+      - description: Recipe id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.AccountDTO'
+            type: array
+      summary: Retrieves all users who liked mentioned recipe
+      tags:
+      - Likes
+    put:
+      parameters:
+      - description: Recipe id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: Adds like to recipe from authorized user
+      tags:
+      - Likes
+  /recipes/{id}/like/amount:
+    get:
+      parameters:
+      - description: Recipe id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves the recipe's amount of likes
+      tags:
+      - Likes
+  /recipes/{id}/steps:
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.StepDTO'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves all recipe's steps
+      tags:
+      - Steps
+    post:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Step
+        in: body
+        name: step
+        required: true
+        schema:
+          $ref: '#/definitions/objects.StepDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/objects.StepDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+        "403":
+          description: Forbidden
+          schema:
+            type: Access
+      summary: Posts step
+      tags:
+      - Steps
+  /recipes/{id}/steps/{step}:
+    delete:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Step's number
+        in: path
+        name: step
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+        "401":
+          description: Unauthorized
+          schema:
+            type: Authentication
+      summary: Removes step
+      tags:
+      - Steps
+    get:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Step's number
+        in: path
+        name: step
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.StepDTO'
+        "400":
+          description: Bad Request
+          schema:
+            type: Invalid
+      summary: Retrieves recipe's step by its number
+      tags:
+      - Steps
+    patch:
+      parameters:
+      - description: Recipe's id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Step's number
+        in: path
+        name: step
+        required: true
+        type: integer
+      - description: Step data
+        in: body
+        name: value
+        required: true
+        schema:
+          $ref: '#/definitions/objects.StepDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Successful
+      summary: Updates step
+      tags:
+      - Steps
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
