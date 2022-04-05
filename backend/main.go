@@ -2,9 +2,10 @@ package main
 
 import (
 	"api/teamdev/controllers"
-	"api/teamdev/utils"
 	_ "api/teamdev/docs"
-	
+	"api/teamdev/objects"
+	"api/teamdev/utils"
+
 	"encoding/json"
 	"fmt"
 	"math/rand"
@@ -29,6 +30,12 @@ func initDBConnection(cnf utils.DBConfiguration) *gorm.DB {
 	}
 
 	db.SingularTable(true)
+
+	db.AutoMigrate (
+		&objects.Recipe{}, &objects.Account{}, &objects.Category{},
+		&objects.Ingredient{}, &objects.Step{},
+	)
+
 	return db
 }
 
