@@ -8,7 +8,7 @@ import Input from "components/Input";
 import RoundButton from "components/RoundButton";
 
 import { Account } from "types/Account"
-import { Login as LoginQuery } from "postApi/accounts/Login";
+import { Login as LoginQuery } from "postAPI/accounts/Login";
 
 type LoginProps = {
     navigate: NavigateFunction
@@ -34,7 +34,7 @@ class LoginPage extends React.Component<LoginProps> {
             this.acc.password = val
         }
     
-        submit(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        submit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
             e.currentTarget.disabled = true
             LoginQuery(this.acc, this.props.setCookie).then(data => {
                 if (data.status == 200) {
