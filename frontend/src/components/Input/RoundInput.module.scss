@@ -1,0 +1,25 @@
+@import "styles/variables";
+
+
+.round_input {
+    color: $colorText;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: $colorAccent3;
+    width: "100%";
+    &::placeholder {
+        color: $colorText;
+        opacity: 0.6;
+    }
+    background: inherit;
+    padding: 0 10px 0 10px;
+
+    &:hover, &:focus-visible {
+        color: $colorText;
+        box-shadow: 0 0 5px 1px $colorAccent3;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+}
