@@ -1,52 +1,31 @@
 import React from "react";
 import {
-    InputProps as IProps, Input as I
+    InputProps as IProps, Input as I, ChakraProvider, chakra
 } from "@chakra-ui/react";
 
-import theme from "styles/extendTheme"
-import RoundBox from "components/RoundBox";
+import styles from "./RoundInput.module.scss";
 
-interface InputProps extends IProps {
+interface InputProps {
     name?: string
     type?: string
     placeholder?: string
-    focusBorderColor?: string
-    placeholderColor?: string
 }
 
 const Input: React.FC<InputProps> = (props) => {
     const {
         name = "", type = "",
         placeholder = "Введите данные",
-        textColor = theme.colors["text"],
-        placeholderColor = theme.colors["text"],
-        focusBorderColor = theme.colors["accent-3"],
-        onInput = () => {},
-         ...rest 
+         ...rest
      } = props
 
-     const style = {
-        color: textColor,
-        boxShadow: '0 0 5px 1px ' + focusBorderColor,
-      };
-
     return (
-    <RoundBox {...rest}>
-        <I 
-            name={name} type={type}
-            textColor={textColor}
-            borderWidth={0} borderRadius={10} 
-            width="100%"
+        <chakra.input
+            name={name}
+            type={type}
+            className={styles.round_input}
             placeholder={placeholder}
-            onInput={onInput}
-            _focus={style}
-            _placeholder={{
-                color: placeholderColor,
-                opacity: 0.6
-            }}
             {...rest}
         />
-    </RoundBox>
     )
 }
 
