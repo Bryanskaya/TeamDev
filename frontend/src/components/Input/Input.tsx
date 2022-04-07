@@ -3,7 +3,7 @@ import {
     InputProps as IProps, Input as I
 } from "@chakra-ui/react";
 
-import theme from "extendTheme"
+import theme from "styles/extendTheme"
 import RoundBox from "components/RoundBox";
 
 interface InputProps extends IProps {

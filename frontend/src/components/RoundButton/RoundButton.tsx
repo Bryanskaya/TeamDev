@@ -1,16 +1,19 @@
 import React from "react";
-import {
-    Button, ButtonProps
-} from "@chakra-ui/react";
-import theme from "extendTheme"
 
-interface RoundBoxProps extends ButtonProps {
+import {
+    Button, ButtonProps, chakra, ChakraProvider, extendTheme
+} from "@chakra-ui/react";
+
+import theme from "styles/extendTheme";
+import styles from "./RoundButton.module.scss";
+
+interface RoundButtonProps extends ButtonProps {
     focusBorderColor?: string
     focusColor?: string
     focusBgColor?: string
 }
 
-const RoundButton: React.FC<RoundBoxProps> = (props) => {
+const RoundButton: React.FC<RoundButtonProps> = (props) => {
     const { 
         border="1px solid",  borderRadius="10px",
         display="flex",
@@ -19,17 +22,10 @@ const RoundButton: React.FC<RoundBoxProps> = (props) => {
         focusBgColor = theme.colors["bg"],
         ...rest 
     } = props
-    const style = {
-        color: focusColor,
-        bg: focusBgColor,
-        boxShadow: '0 0 5px 1px ' + focusBorderColor
-    };
+
     return (
-        <Button
-            display={display}
-            border={border}
-            borderRadius={borderRadius}
-            _hover={style}
+        <chakra.button 
+            className={styles.round_button} 
             {...rest}
         />
     )

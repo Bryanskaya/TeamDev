@@ -1,7 +1,7 @@
 import * as React from "react";
 import Fonts from "./components/Fonts";
 // import Home from "./components/layout/Home";
-import theme from "./extendTheme";
+import theme from "./styles/extendTheme";
 import { ChakraProvider, Box, Text, Menu, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
