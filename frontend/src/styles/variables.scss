@@ -1,4 +1,6 @@
-
+///
+// COLORS
+/// 
 $colorBg: #EAE7E0;
 $colorBgAlt: #D4CDC4;
 $colorText: #000000;
@@ -10,11 +12,88 @@ $colorAccent3: #4D9699;
 $colorAdd1: #C8A98C;
 $colorAdd2: #BA9B00;
 
-@mixin text-header($font-size: 66px, $align: left, $color: $colorTitle) {
+///
+// SHAPES
+/// 
+@mixin shape($width:default, $height:default, $border-radius: 10px) {
+    width: $width;
+    height: $height;
+
+    @if ($border-radius !=none) {
+        border-radius: $border-radius;
+    }
+}
+
+///
+// Text styles
+///
+@mixin text-headline($font-size: 66px, $color: $colorTitle, $align: left) {
     font-family: 'Lora';
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 110%;
+
+    margin: 0;
+    font-size: $font-size;
+    color: $color;
+    text-align: $align;
+}
+
+@mixin text-header($font-size: 41px, $color: $colorTitle, $align: left) {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 140%;
+
+    margin: 0;
+    font-size: $font-size;
+    color: $color;
+    text-align: $align;
+}
+
+@mixin text-subtitle($font-size: 26px, $color: $colorTitle, $align: left) {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 140%;
+
+    margin: 0;
+    font-size: $font-size;
+    color: $color;
+    text-align: $align;
+}
+
+@mixin text-body($font-size: 16px, $color: $colorTitle, $align: left) {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 200%;
+
+    margin: 0;
+    font-size: $font-size;
+    color: $color;
+    text-align: $align;
+}
+
+@mixin text-altbody($font-size: 16px, $color: $colorTitle, $align: left) {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: -0.045em;
+
+    margin: 0;
+    font-size: $font-size;
+    color: $color;
+    text-align: $align;
+}
+
+@mixin text-caption($font-size: 12px, $color: $colorTitle, $align: left) {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 200%;
+    text-transform: uppercase;
 
     margin: 0;
     font-size: $font-size;

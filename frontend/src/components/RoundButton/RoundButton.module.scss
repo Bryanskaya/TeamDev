@@ -2,20 +2,21 @@
 
 
 .round_button {
+    @include text-body();
+    @include shape();
+
     border: 1px solid;
-    border-radius: 10px;
     display: flex;
     background-color: $colorButton;
     color: $colorBg;
     justify-content: center;
-    font-family: inherit;
-    font-weight: 3;  
-    transition-duration: 300ms;      
 
+    transition-duration: 300ms;      
     &:hover {
         color: $colorText;
         background: $colorBg;
         box-shadow: 0 0 5px 1px $colorAccent3;
+        border-color: $colorAccent3;
 
         transition-duration: 300ms;
     }
