@@ -2,6 +2,7 @@
 
 .round_input {
     @include shape();
+    @include text-body();
 
     color: $colorText;
     border-color: $colorAccent3;
