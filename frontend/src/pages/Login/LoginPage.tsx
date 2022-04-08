@@ -55,18 +55,18 @@ class LoginPage extends React.Component<LoginProps> {
         >
             <Box d="flex" flexDirection="column" rowGap="35px">
                 <FormControl isRequired>
-                    <Input name="login" width="100%" placeholder="Введите логин" 
+                    <Input name="login" width="100%" placeholder="Введите логин" height="40px"
                     onInput={event => this.setLogin(event.currentTarget.value)}/>
                 </FormControl>
                 <FormControl isRequired>
-                    <Input name="password" type="password" width="100%" placeholder="Введите пароль"
+                    <Input name="password" type="password" width="100%" placeholder="Введите пароль" height="40px"
                     onInput={event => this.setPassword(event.currentTarget.value)}/>
                 </FormControl>
             </Box>
 
             <Box d="flex" flexDirection="column" rowGap="15px" alignItems="center">
                 <RoundButton onClick={ (event) => this.submit(event) }
-                    w="100%" bg="button" textColor="bg"
+                    width="100%" height="40px" bg="button" textColor="bg"
                 >
                     Войти
                 </RoundButton>
