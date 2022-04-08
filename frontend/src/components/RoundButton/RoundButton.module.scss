@@ -1,12 +1,9 @@
-@import "styles/variables";
-
+@import "/src/styles/variables.scss";
 
 .round_button {
     @include text-body();
     @include shape();
 
-    border: 1px solid;
-    display: flex;
     background-color: $colorButton;
     color: $colorBg;
     justify-content: center;

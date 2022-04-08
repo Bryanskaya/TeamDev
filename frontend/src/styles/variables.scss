@@ -18,10 +18,9 @@ $colorAdd2: #BA9B00;
 @mixin shape($width:default, $height:default, $border-radius: 10px) {
     width: $width;
     height: $height;
-
-    @if ($border-radius !=none) {
-        border-radius: $border-radius;
-    }
+    border-radius: $border-radius;
+    display: flex;
+    border: 1px solid;
 }
 
 ///

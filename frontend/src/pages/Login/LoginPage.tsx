@@ -58,11 +58,11 @@ class LoginPage extends React.Component<LoginProps> {
         >
             <Box d="flex" flexDirection="column" rowGap="35px">
                 <FormControl isRequired>
-                    <Input name="login" w="100%" placeholder="Введите логин" 
+                    <Input name="login" width="100%" placeholder="Введите логин" 
                     onInput={event => this.setLogin(event.currentTarget.value)}/>
                 </FormControl>
                 <FormControl isRequired>
-                    <Input name="password" type="password" w="100%" placeholder="Введите пароль"
+                    <Input name="password" type="password" width="100%" placeholder="Введите пароль"
                     onInput={event => this.setPassword(event.currentTarget.value)}/>
                 </FormControl>
             </Box>

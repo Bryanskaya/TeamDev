@@ -1,18 +1,17 @@
-@import "styles/variables";
-
+@import "/src/styles/variables.scss";
 
 .round_input {
+    @include shape();
+
     color: $colorText;
-    border: 1px solid;
-    border-radius: 10px;
     border-color: $colorAccent3;
-    width: "100%";
+    background: inherit;
+    padding: 0 10px 0 10px;
+
     &::placeholder {
         color: $colorText;
         opacity: 0.6;
     }
-    background: inherit;
-    padding: 0 10px 0 10px;
 
     &:hover, &:focus-visible {
         color: $colorText;

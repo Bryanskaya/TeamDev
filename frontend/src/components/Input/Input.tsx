@@ -5,7 +5,7 @@ import {
 
 import styles from "./RoundInput.module.scss";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name?: string
     type?: string
     placeholder?: string
