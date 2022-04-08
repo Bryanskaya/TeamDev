@@ -1,19 +1,17 @@
 import React from "react";
 import {
-    Box, BoxProps
+    Box, BoxProps, chakra, ChakraProvider
 } from "@chakra-ui/react";
+
+import styles from "./RoundInput.module.scss";
 
 export interface RoundBoxProps extends BoxProps {}
 
 const RoundBox: React.FC<RoundBoxProps> = (props) => {
-    const { border="1px solid #000000", borderRadius="10px", display="flex", ...rest } = props
-    
     return (
-        <Box
-        display={display}
-        border={border}
-        borderRadius={borderRadius}
-        {...rest}
+        <chakra.div
+            className={styles.round_box}
+        {...props}
         />
     )
 }
