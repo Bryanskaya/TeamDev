@@ -23,9 +23,6 @@ type LoginProps = {
 
 class LoginPage extends React.Component<LoginProps> {
     acc: Account = {login: ""}
-    constructor(props) {
-        super(props)
-    }
 
     setLogin(val: string) {
         this.acc.login = val
@@ -37,7 +34,7 @@ class LoginPage extends React.Component<LoginProps> {
     submit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.currentTarget.disabled = true
         LoginQuery(this.acc, this.props.setCookie).then(data => {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 window.location.href = '/';
             } else {
                 e.currentTarget.disabled = false

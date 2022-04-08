@@ -2,13 +2,13 @@ import * as React from "react";
 import Fonts from "./components/Fonts";
 // import Home from "./components/layout/Home";
 import theme from "./styles/extendTheme";
-import { ChakraProvider, Box, Text, Menu, Container } from "@chakra-ui/react";
+import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
 
 interface HomeProps {}
-const Home: React.FC<HomeProps> = ({}) => {
+const Home: React.FC<HomeProps> = () => {
   return (
     <Box backgroundColor="bg" minH="100vh" h="auto">
       <Container maxW="1000px" minH="95%"

@@ -4,7 +4,6 @@ import {
     ButtonProps, chakra
 } from "@chakra-ui/react";
 
-import theme from "styles/extendTheme";
 import styles from "./RoundButton.module.scss";
 
 interface RoundButtonProps extends ButtonProps {}

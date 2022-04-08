@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    InputProps as IProps, Input as I, ChakraProvider, chakra
+    chakra
 } from "@chakra-ui/react";
 
 import styles from "./RoundInput.module.scss";
