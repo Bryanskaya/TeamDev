@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Link, FormControl } from "@chakra-ui/react";
+import { Box, Link } from "@chakra-ui/react";
 import { NavigateFunction } from "react-router-dom";
 import { CookieSetOptions } from "universal-cookie";
 
