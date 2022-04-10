@@ -1,0 +1,31 @@
+@import "/src/styles/variables.scss";
+
+.login_page {
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+    row-gap: 70px;
+
+    // align-items: stretch;
+    // justify-content: space-around;
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input, button {
+        height: 40px;
+        width: 100%;
+    }
+}
+
+.input_div {
+    row-gap: 35px;
+}
+
+.button_div {
+    row-gap: 15px;
+}

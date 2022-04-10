@@ -1,5 +1,4 @@
 import * as React from "react";
-import Fonts from "./components/Fonts";
 // import Home from "./components/layout/Home";
 import theme from "./styles/extendTheme";
 import { ChakraProvider, Box, Container } from "@chakra-ui/react";
@@ -47,7 +46,6 @@ function NotFound () {
 export const App = () => {
   return (
     <ChakraProvider theme={theme}>
-      <Fonts />
       <Home />
     </ChakraProvider>
   )
