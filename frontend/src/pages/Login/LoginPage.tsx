@@ -10,6 +10,8 @@ import RoundButton from "components/RoundButton";
 import { Account } from "types/Account"
 import { Login as LoginQuery } from "postAPI/accounts/Login";
 
+import styles from "./LoginPage.module.scss";
+
 type LoginProps = {
     navigate: NavigateFunction
     cookie: {
@@ -23,9 +25,6 @@ type LoginProps = {
 
 class LoginPage extends React.Component<LoginProps> {
     acc: Account = {login: ""}
-    constructor(props) {
-        super(props)
-    }
 
     setLogin(val: string) {
         this.acc.login = val
@@ -37,7 +36,7 @@ class LoginPage extends React.Component<LoginProps> {
     submit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.currentTarget.disabled = true
         LoginQuery(this.acc, this.props.setCookie).then(data => {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 window.location.href = '/';
             } else {
                 e.currentTarget.disabled = false
@@ -49,28 +48,16 @@ class LoginPage extends React.Component<LoginProps> {
     }
 
     render() {
-        return <Box
-            display="flex" width="70%"
-            flexDir="column"
-            alignItems="stretch"
-            justifyContent="space-around"
-            rowGap="70px"
-        >
-            <Box d="flex" flexDirection="column" rowGap="35px">
-                <FormControl isRequired>
-                    <Input name="login" w="100%" placeholder="Введите логин" 
-                    onInput={event => this.setLogin(event.currentTarget.value)}/>
-                </FormControl>
-                <FormControl isRequired>
-                    <Input name="password" type="password" w="100%" placeholder="Введите пароль"
-                    onInput={event => this.setPassword(event.currentTarget.value)}/>
-                </FormControl>
+        return <Box className={styles.login_page}>
+            <Box className={styles.input_div}>
+                <Input name="login" placeholder="Введите логин"
+                onInput={event => this.setLogin(event.currentTarget.value)}/>
+                <Input name="password" type="password" placeholder="Введите пароль"
+                onInput={event => this.setPassword(event.currentTarget.value)}/>
             </Box>
 
-            <Box d="flex" flexDirection="column" rowGap="15px" alignItems="center">
-                <RoundButton onClick={ (event) => this.submit(event) }
-                    w="100%" bg="button" textColor="bg"
-                >
+            <Box rowGap="15px" alignItems="center">
+                <RoundButton onClick={ (event) => this.submit(event) }>
                     Войти
                 </RoundButton>
                 <Link href="/auth/signup">Зарегистрироваться</Link>

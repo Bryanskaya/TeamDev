@@ -1,0 +1,22 @@
+@import "/src/styles/variables.scss";
+
+.round_button {
+    @include text-body();
+    @include shape();
+
+    background-color: $colorButton;
+    color: $colorBg;
+    justify-content: center;
+    align-items: center;
+
+    transition-duration: 300ms;      
+    &:hover {
+        color: $colorText;
+        background: $colorBg;
+        box-shadow: 0 0 5px 1px $colorAccent3;
+        border-color: $colorAccent3;
+
+        transition-duration: 300ms;
+    }
+}
+    
