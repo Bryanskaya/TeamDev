@@ -1,0 +1,14 @@
+@import "/src/styles/variables.scss";
+
+.header {
+    background-color: $colorBgAlt;
+    // align-items: center;
+    padding: 4px 40px 4px 40px;
+    
+    >div {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        padding: 0;
+        max-width: 1000px;
+    }
+}

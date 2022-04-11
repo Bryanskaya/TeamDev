@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  Link,
-} from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
 import { useCookies } from "react-cookie";
 
-import theme from "styles/extendTheme";
 import styles from "./Navbar.module.scss";
 
-import RoundBox from "components/RoundBox"
 import LoginIcon from 'components/Icons/Login'
 import AuthorIcon from "components/Icons/Author";
 import DownArrowIcon from "components/Icons/DownArrow";
@@ -19,21 +13,9 @@ import LogoutIcon from "components/Icons/Logout";
 
 import { Logout as LogoutQuery } from "postAPI/accounts/Logout";
 
+import { navItems } from "./items";
+
 export interface NavbarProps {}
-
-const navItems = {
-    '': [
-        { name: "Рецепты", ref: "/" },
-    ],
-    'admin': [
-        { name: "Рецепты", ref: "/" },
-        { name: "Пользователи", ref: "#" },
-    ],
-    'user': [
-        { name: "Рецепты", ref: "/" },
-    ],
-}
-
 const Navbar: React.FC<NavbarProps> = () => {
     let [cookie, , removeCookie] = useCookies(['role', 'login', 'token']);
     let role = cookie.login ? 'admin' : ''

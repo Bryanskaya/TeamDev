@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
 import Navbar from "components/Navbar";
+import Header from "components/Header";
+import Titles from "components/Titles";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -47,10 +49,8 @@ function NotFound () {
 export const App = () => {
   return (
     <ChakraProvider theme={theme}>
-      <Navbar />
+      <Header subtitle="1111" title={"АяяА"} undertitle="1111"/>
       <Home />
     </ChakraProvider>
   )
 };
-
-
