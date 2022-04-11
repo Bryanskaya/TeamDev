@@ -1,9 +1,8 @@
 import React from "react";
 import {
-    Box, BoxProps, chakra, ChakraProvider
-} from "@chakra-ui/react";
+    BoxProps, chakra} from "@chakra-ui/react";
 
-import styles from "./RoundInput.module.scss";
+import styles from "./RoundBox.module.scss";
 
 export interface RoundBoxProps extends BoxProps {}
 

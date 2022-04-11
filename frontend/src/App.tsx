@@ -5,6 +5,7 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
+import Navbar from "components/Navbar";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -46,6 +47,7 @@ function NotFound () {
 export const App = () => {
   return (
     <ChakraProvider theme={theme}>
+      <Navbar />
       <Home />
     </ChakraProvider>
   )

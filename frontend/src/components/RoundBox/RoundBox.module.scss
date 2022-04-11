@@ -1,8 +1,5 @@
 @import "/src/styles/variables.scss";
 
 .round_box {
-    @include shape();
-
-    border-color: $colorText;
-    background: inherit;
+    @include round-box();
 }
