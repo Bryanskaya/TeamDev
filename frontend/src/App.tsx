@@ -5,6 +5,7 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
+import SignUp from "pages/Signup";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -30,7 +31,7 @@ function Routing() {
       <Route path="/me/recipes" element={'My recipes'}/>
 
       <Route path="/auth/signin" element={<Login/>}/>
-      <Route path="/auth/signup" element={'SignUp'}/>
+      <Route path="/auth/signup" element={<SignUp/>}/>
 
       <Route path="/recipes/:id" element={'Recipe'}/>
 
