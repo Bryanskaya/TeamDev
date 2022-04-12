@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
 import Header from "components/Header";
 import { HeaderRouter } from "components/Header/Header";
+import SignUp from "pages/Signup";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -32,7 +33,7 @@ function Routing() {
       <Route path="/me/recipes" element={'My recipes'}/>
 
       <Route path="/auth/signin" element={<Login/>}/>
-      <Route path="/auth/signup" element={'SignUp'}/>
+      <Route path="/auth/signup" element={<SignUp/>}/>
 
       <Route path="/recipes/:id" element={'Recipe'}/>
 
