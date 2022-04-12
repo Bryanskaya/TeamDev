@@ -1,9 +1,6 @@
 import React from "react";
 import {
   Text,
-  List,
-  ListItem,
-  Container,
   Box,
 } from "@chakra-ui/react";
 

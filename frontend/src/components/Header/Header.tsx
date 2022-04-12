@@ -6,8 +6,8 @@ import {
 
 import styles from "./Header.module.scss";
 
-import Navbar from "../Navbar"
-import Titles, { TitlesProps } from "components/Titles/Titles";
+import Navbar from "./Navbar"
+import Titles, { TitlesProps } from "components/Header/Titles/Titles";
 
 interface HeaderProps extends TitlesProps {
     role?: string

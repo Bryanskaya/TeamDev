@@ -5,14 +5,12 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
-import Navbar from "components/Navbar";
 import Header from "components/Header";
-import Titles from "components/Titles";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
   return (
-    <Box backgroundColor="bg" minH="100vh" h="auto">
+    <Box backgroundColor="bg" h="auto">
       <Container maxW="1000px" minH="95%"
         display="flex" 
         paddingX="0px" paddingY="30px"  

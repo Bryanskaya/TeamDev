@@ -1,4 +1,4 @@
-import { ColorModeScript } from "@chakra-ui/react"
+import { Box, ColorModeScript } from "@chakra-ui/react"
 import * as React from "react"
 import './App.css';
 import ReactDOM from "react-dom"
@@ -11,8 +11,8 @@ axios.defaults.withCredentials = true
 
 ReactDOM.render(
   <React.StrictMode>
-    <ColorModeScript />
-    <A />
+      <ColorModeScript />
+      <A />
   </React.StrictMode>
   , document.getElementById("root"),
 )
