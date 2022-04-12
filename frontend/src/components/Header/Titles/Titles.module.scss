@@ -1,0 +1,26 @@
+@import "/src/styles/variables.scss";
+
+.titles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    p {
+        text-align: center;
+    }
+}
+
+.subtitle {
+    @include text-subtitle();
+    color: $colorAccent1
+}
+
+.title {
+    @include text-header();
+    color: $colorTitle
+}
+
+.undertitle {
+    @include text-body($colorText);
+    color: $colorText;
+}

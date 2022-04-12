@@ -23,6 +23,12 @@ $colorAdd2: #BA9B00;
     border: 1px solid;
 }
 
+@mixin round-box() {
+    @include shape();
+    border-color: $colorText;
+    background: inherit;
+}
+
 ///
 // Text styles
 ///

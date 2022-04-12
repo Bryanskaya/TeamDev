@@ -9,6 +9,7 @@ body {
     flex-flow: column;
     min-height: 100vh;   
     max-height: none;
+    background: #eae7e0;
 
     padding: 0;
     margin: 0;

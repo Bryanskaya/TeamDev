@@ -56,10 +56,8 @@ class LoginPage extends React.Component<LoginProps> {
                 onInput={event => this.setPassword(event.currentTarget.value)}/>
             </Box>
 
-            <Box rowGap="15px" alignItems="center">
-                <RoundButton onClick={ (event) => this.submit(event) }>
-                    Войти
-                </RoundButton>
+            <Box className={styles.button_div}>
+                <RoundButton onClick={ (event) => this.submit(event) }> Войти </RoundButton>
                 <Link href="/auth/signup">Зарегистрироваться</Link>
                 <Link href="/">Назад</Link>
             </Box>

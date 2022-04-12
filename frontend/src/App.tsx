@@ -5,12 +5,14 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
+import Header from "components/Header";
+import { HeaderRouter } from "components/Header/Header";
 import SignUp from "pages/Signup";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
   return (
-    <Box backgroundColor="bg" minH="100vh" h="auto">
+    <Box backgroundColor="bg" h="auto">
       <Container maxW="1000px" minH="95%"
         display="flex" 
         paddingX="0px" paddingY="30px"  
@@ -47,9 +49,8 @@ function NotFound () {
 export const App = () => {
   return (
     <ChakraProvider theme={theme}>
+      <HeaderRouter/>
       <Home />
     </ChakraProvider>
   )
 };
-
-
