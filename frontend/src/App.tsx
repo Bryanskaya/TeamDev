@@ -9,6 +9,8 @@ import Header from "components/Header";
 import { HeaderRouter } from "components/Header/Header";
 import SignUp from "pages/Signup";
 import Recipe from "pages/Recipe/RecipeCard";
+import RecipeMap from "pages/Recipe/RecipeMap";
+import AllRecipesPage from "pages/Recipe/AllRecipesPage";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -29,16 +31,18 @@ const Home: React.FC<HomeProps> = () => {
 function Routing() {
   return <BrowserRouter>
     <Routes>
-      <Route path="/" element={'All Recipes'}/>
+      <Route path="/" element={<AllRecipesPage/>}/>
       <Route path="/me/likes" element={'I liked these recipes'}/>
       <Route path="/me/recipes" element={'My recipes'}/>
 
       <Route path="/auth/signin" element={<Login/>}/>
       <Route path="/auth/signup" element={<SignUp/>}/>
 
-      <Route path="/recipes/:id" element={<Recipe id={1} author={'admin'} 
+      {/* <Route path="/recipes/:id" element={<RecipeMap />}/> */}
+
+      {/* ! id={1} author={'admin'} 
       title={'Тест 1001'} created_at={'12.12.2000'} description={'no'}
-      duration={5} portion_num={1}/>}/>
+      duration={5} portion_num={1} */}
 
       <Route path="*" element={<NotFound />}/>
     </Routes>
