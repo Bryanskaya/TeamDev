@@ -1,0 +1,22 @@
+@import "/src/styles/variables.scss";
+
+.round_box_tiny {
+    @include round-box();
+    width: 120px;
+    height: 30px;
+    border-color: $colorAccent1;
+    align-items: center;
+
+    >div {
+        margin-bottom: auto;
+        margin-top: auto;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    >p {
+        @include text-body();
+        color: $colorText;
+        margin-left: 2px;
+    }
+}

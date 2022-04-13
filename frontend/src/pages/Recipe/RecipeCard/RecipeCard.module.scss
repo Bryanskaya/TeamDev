@@ -1,0 +1,67 @@
+@import "/src/styles/variables.scss";
+
+.main_box {
+    @include round-box();
+    width: 480px;
+    border-color: $colorTitle;
+    align-items: stretch;
+}
+
+.info_box {
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: column;
+    margin: 10px;
+}
+
+.title_box {
+    width: 100%;
+    height: 77px;
+
+    >p {
+        @include text-subtitle();
+        color: $colorTitle;
+        text-align: center;
+    }
+}
+
+.likes_box {
+    @include round-box();
+    width: 120px;
+    height: 30px;
+    border-color: $colorAccent1;
+    align-items: center;
+
+    >p {
+        @include text-body;
+        color: $colorText;
+        margin-left: 2px;
+    }
+
+    >div {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+.description_box {
+    align-self: flex-start;
+
+    >p {
+        @include text-altbody();
+        color: $colorText;
+    }
+}
+
+.link_div {
+    text-decoration: 'none';
+}
+
+.image_div {
+    border-radius: 10px 0 0 10px;
+    width: 200px;
+    height: 300px;
+}
+
