@@ -8,6 +8,7 @@ import Login from "pages/Login";
 import Header from "components/Header";
 import { HeaderRouter } from "components/Header/Header";
 import SignUp from "pages/Signup";
+import Recipe from "pages/Recipe/RecipeCard";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -35,7 +36,9 @@ function Routing() {
       <Route path="/auth/signin" element={<Login/>}/>
       <Route path="/auth/signup" element={<SignUp/>}/>
 
-      <Route path="/recipes/:id" element={'Recipe'}/>
+      <Route path="/recipes/:id" element={<Recipe id={1} author={'admin'} 
+      title={'Тест 1001'} created_at={'12.12.2000'} description={'no'}
+      duration={5} portion_num={1}/>}/>
 
       <Route path="*" element={<NotFound />}/>
     </Routes>
