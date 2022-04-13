@@ -2,16 +2,17 @@ package controllers
 
 import (
 	auth "api/teamdev/controllers/token"
-	"api/teamdev/utils"
 	"api/teamdev/models"
+	"api/teamdev/utils"
 	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 	"github.com/jinzhu/gorm"
+	"github.com/rs/cors"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
+
 
 func initControllers(r *mux.Router, m *models.Models) {
 	r.Use(utils.LogHandler)
@@ -45,7 +46,16 @@ func RunRouter(r *mux.Router, port uint16) error {
 	c := cors.New(cors.Options{
         AllowedOrigins: []string{"http://localhost:3000"},
         AllowCredentials: true,
-		AllowedMethods: []string{"GET", "POST", "DELETE", "PATCH", "PUT"},
+		AllowedMethods: []string{
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodPatch,
+			http.MethodDelete,
+			http.MethodOptions,
+			http.MethodHead,
+		},
+		AllowedHeaders: []string{"Accept", "Accept-Language", "Content-Type", "Content-Language", "Origin", "Content-Type","content-type","Origin", "Accept"},
     })
 	
 	handler := c.Handler(r)

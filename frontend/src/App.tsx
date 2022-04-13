@@ -5,7 +5,6 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
-import Header from "components/Header";
 import { HeaderRouter } from "components/Header/Header";
 import SignUp from "pages/Signup";
 

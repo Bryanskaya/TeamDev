@@ -51,6 +51,8 @@ func (ctrl *account) LogIn(w http.ResponseWriter, r *http.Request) {
 	}
 
 	auth.FillCookie(w, acc.Login)
+	data, _ := ctrl.model.Find(accDTO.Login)
+	responses.JsonSuccess(w, data.ToDTO())
 }
 
 // @Tags Accounts
