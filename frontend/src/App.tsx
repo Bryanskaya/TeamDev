@@ -11,6 +11,8 @@ import SignUp from "pages/Signup";
 import Recipe from "pages/Recipe/RecipeCard";
 import RecipeMap from "pages/Recipe/RecipeMap";
 import AllRecipesPage from "pages/Recipe/AllRecipesPage";
+import AuthorRecipesPage from "pages/Recipe/AuthorRecipesPage";
+import LikedRecipesPage from "pages/Recipe/LikedRecipesPage";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -32,8 +34,8 @@ function Routing() {
   return <BrowserRouter>
     <Routes>
       <Route path="/" element={<AllRecipesPage/>}/>
-      <Route path="/me/likes" element={'I liked these recipes'}/>
-      <Route path="/me/recipes" element={'My recipes'}/>
+      <Route path="/me/likes" element={<LikedRecipesPage/>}/>
+      <Route path="/me/recipes" element={<AuthorRecipesPage/>}/>
 
       <Route path="/auth/signin" element={<Login/>}/>
       <Route path="/auth/signup" element={<SignUp/>}/>
