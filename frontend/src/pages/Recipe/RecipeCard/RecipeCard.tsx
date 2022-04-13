@@ -15,12 +15,12 @@ import {Recipe as RecipeI} from "types/Recipe";
 import GetLikes from "postAPI/likes/Get";
 import ClockBox from "components/ClockBox";
 
-import styles from "./Recipe.module.scss";
+import styles from "./RecipeCard.module.scss";
 
 interface RecipeProps extends RecipeI {}
 
 
-const Recipe: React.FC<RecipeProps> = (props) => {
+const RecipeCard: React.FC<RecipeProps> = (props) => {
     var path = "/recipes/" + props.id;
     const [likes, change] = React.useState(0);
 
@@ -71,4 +71,4 @@ const Recipe: React.FC<RecipeProps> = (props) => {
     )
 }
 
-export default Recipe;
+export default RecipeCard;
