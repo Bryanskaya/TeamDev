@@ -6,8 +6,6 @@ import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
 import SignUp from "pages/Signup";
-import Recipe from "pages/Recipe/RecipeCard";
-import RecipeMap from "pages/Recipe/RecipeMap";
 import AllRecipesPage from "pages/Recipe/AllRecipesPage";
 import AuthorRecipesPage from "pages/Recipe/AuthorRecipesPage";
 import LikedRecipesPage from "pages/Recipe/LikedRecipesPage";

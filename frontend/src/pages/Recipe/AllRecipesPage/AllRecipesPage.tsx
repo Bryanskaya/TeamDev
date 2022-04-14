@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import Search from "components/Search";
 import { SearchContext } from "context/Search";
 import GetRecipes from "postAPI/recipes/GetAll";
 import React, { useContext } from "react";

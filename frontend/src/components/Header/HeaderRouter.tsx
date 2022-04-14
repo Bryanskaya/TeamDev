@@ -5,7 +5,7 @@ import SearchHeader from "components/SearchHeader";
 import Header from ".";
 
 
-export const HeaderRouter: React.FC<{}> = ({}) => {
+export const HeaderRouter: React.FC<{}> = () => {
     return <BrowserRouter>
         <Routes>
             <Route path="/" element={<SearchHeader title="Все рецепты"/>}/>

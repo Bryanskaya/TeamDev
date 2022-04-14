@@ -29,7 +29,6 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     }
 
     componentDidMount() {
-        console.log("Mount")
         this.getAll()
     }
 
@@ -42,9 +41,7 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     render() {
         return (
             <Box className={styles.map_box}>
-                {this.state.postContent.map(item =>
-                    <RecipeCard {...item} key={item.id}/>
-                )}
+                {this.state.postContent.map(item => <RecipeCard {...item} key={item.id}/>)}
             </Box>
         )
     }

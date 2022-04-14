@@ -9,16 +9,12 @@ const SearchHeader: React.FC<TitlesProps> = (props) => {
     let [searchQuery, setSearchQuery] = React.useState("")
     const searchContext = useContext(SearchContext);
 
-    const searchQueryHandler = (query: string) => {
-        console.log(query)
-        searchContext.searchHandler(query)
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value)
+        searchContext.searchHandler(event.target.value)
     };
 
-    const searchField = 
-    <Search value={searchQuery} onChange={(event) => {
-        setSearchQuery(event.target.value)
-        searchQueryHandler(event.target.value)
-    }}/>
+    const searchField = <Search value={searchQuery} onChange={(event) => changeHandler(event)}/>
 
     return (
         <Header addField={searchField} {...props}/>
