@@ -9,13 +9,7 @@ interface AllRecipesProps {}
 
 const AllRecipesPage: React.FC<AllRecipesProps> = (props) => {
   return (
-    <Box
-      d="flex" width="100%"
-      flexDir="column"
-      alignItems="start"
-      justifyContent="space-around"
-    //   className={styles.main_box}
-    >
+    <Box className={styles.main_box}>
       <RecipeMap getCall={GetRecipes}/>
     </Box>
   );

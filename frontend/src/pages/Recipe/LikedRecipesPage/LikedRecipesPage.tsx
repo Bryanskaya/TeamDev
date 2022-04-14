@@ -12,13 +12,7 @@ const LikedRecipes: React.FC<LikedRecipesProps> = (props) => {
     let [cookie] = useCookies(['role', 'login']);
 
     return (
-    <Box
-        d="flex" width="100%"
-        flexDir="column"
-        alignItems="start"
-        justifyContent="space-around"
-        //className={styles.main_box}
-    >
+    <Box className={styles.main_box}>
         <RecipeMap getCall={() => GetRecipes(cookie.login)}/>
     </Box>
     );
