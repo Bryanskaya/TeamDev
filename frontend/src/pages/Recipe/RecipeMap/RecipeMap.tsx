@@ -33,15 +33,7 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
 
     render() {
         return (
-            <Box 
-                width="100%"
-                display='flex'
-                flexDirection="row"
-                flexWrap="wrap"
-                justifyContent="space-between"
-                rowGap="40px"
-                /* className={styles.map_box} */
-            >
+            <Box className={styles.map_box}>
                 {this.state.postContent.map(item =>
                     <RecipeCard {...item} key={item.id}/>
                 )}
