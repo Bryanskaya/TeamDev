@@ -253,18 +253,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/categories": {
-            "get": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Retrieves all categories",
-                "responses": {}
-            }
-        },
         "/recipes": {
             "get": {
                 "produces": [

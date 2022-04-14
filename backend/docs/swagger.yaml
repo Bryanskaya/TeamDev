@@ -206,14 +206,6 @@ paths:
       summary: Logging out
       tags:
       - Accounts
-  /categories:
-    get:
-      produces:
-      - application/json
-      responses: {}
-      summary: Retrieves all categories
-      tags:
-      - Categories
   /recipes:
     get:
       produces:

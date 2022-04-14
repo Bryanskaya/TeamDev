@@ -54,12 +54,12 @@ class SignUpPage extends React.Component<SignUpProps> {
     }
 
     async submit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        if (this.acc.password != this.repPassword)
+        if (this.acc.password !== this.repPassword)
             return this.highlightNotMatch()
 
         e.currentTarget.disabled = true
         var data = await CreateQuery(this.acc)
-        if (data.status == 200) {
+        if (data.status === 200) {
             await LoginQuery(this.acc, this.props.setCookie)
             window.location.href = '/';
         } else {
