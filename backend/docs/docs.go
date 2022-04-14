@@ -262,6 +262,14 @@ const docTemplate = `{
                     "Recipes"
                 ],
                 "summary": "Retrieves all recipes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name search",
+                        "name": "title",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",

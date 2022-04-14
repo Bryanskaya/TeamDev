@@ -15,8 +15,8 @@ func NewRecipe(rep repository.RecipesRep, models *Models) *RecipeM {
 	return &RecipeM{rep, models}
 }
 
-func (this *RecipeM) GetAll() []objects.Recipe {
-	temp := this.rep.List()
+func (this *RecipeM) GetAll(title string) []objects.Recipe {
+	temp, _ := this.rep.FindByTitle(title)
 	return temp
 }
 

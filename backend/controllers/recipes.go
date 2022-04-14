@@ -31,9 +31,13 @@ func InitRecipes(r *mux.Router, model *models.RecipeM) {
 // @Router /recipes [get]
 // @Summary Retrieves all recipes
 // @Produce json
+// @Param title query string false "name search"
 // @Success 200 {object} []objects.RecipeDTO
 func (ctrl *recipe) getAllRecipes(w http.ResponseWriter, r *http.Request) {
-	data := ctrl.model.GetAll()
+	query := r.URL.Query()
+	title := query.Get("title")
+
+	data := ctrl.model.GetAll(title)
 	responses.JsonSuccess(w, objects.Recipe{}.ArrToDTO(data))
 }
 

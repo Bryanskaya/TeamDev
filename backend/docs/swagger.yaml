@@ -208,6 +208,11 @@ paths:
       - Accounts
   /recipes:
     get:
+      parameters:
+      - description: name search
+        in: query
+        name: title
+        type: string
       produces:
       - application/json
       responses:

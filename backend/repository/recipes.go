@@ -12,6 +12,7 @@ type RecipesRep interface {
 	CreateList(objArr []objects.Recipe) error
 
 	List() []objects.Recipe
+	FindByTitle(title string)  ([]objects.Recipe, error)
 	FindByLogin(login string) ([]objects.Recipe, error)
 	FindById(id int) (*objects.Recipe, error)
 	GetLikedByLogin(login string) ([]objects.Recipe, error)
@@ -38,6 +39,18 @@ func (this *PGRecipesRep) List() []objects.Recipe {
 	return temp
 }
 
+func (this *PGRecipesRep) FindByTitle(title string)  ([]objects.Recipe, error) {
+	temp := []objects.Recipe{}
+	err := this.db.Where("LOWER(title) LIKE LOWER(?)", "%"+title+"%").Find(&temp).Error
+	switch err {
+	case nil:
+		return temp, nil
+	case gorm.ErrRecordNotFound:
+		return temp, nil
+	default:
+		return nil, errors.UnknownError
+	}
+}
 func (this *PGRecipesRep) FindByLogin(login string)  ([]objects.Recipe, error) {
 	temp := []objects.Recipe{}
 	err := this.db.Where("author = ?", login).Find(&temp).Error
