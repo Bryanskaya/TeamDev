@@ -6,9 +6,8 @@ import {
     Text,
     VStack,
   } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 
-import photoRecipe from "img/photoRecipe.png"
 import FullLike from "components/Icons/FullLike";
 import {Recipe as RecipeI} from "types/Recipe";
 
@@ -26,7 +25,7 @@ const RecipeCard: React.FC<RecipeProps> = (props) => {
 
     async function getLikes() {
         var data = await GetLikes(props.id)
-        if (data.status == 200) {
+        if (data.status === 200) {
             change(data.content)
         }
     }
