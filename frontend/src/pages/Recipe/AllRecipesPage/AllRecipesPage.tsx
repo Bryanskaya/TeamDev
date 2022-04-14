@@ -9,10 +9,11 @@ import styles from "./AllRecipesPage.module.scss";
 interface AllRecipesProps {}
 
 const AllRecipesPage: React.FC<AllRecipesProps> = (props) => {
+  let [searchQuery, setSearchQuery] = React.useState("")
   return (
     <Box className={styles.main_box}>
-      <Search/>
-      <RecipeMap getCall={GetRecipes}/>
+      <Search onChange={(event) => setSearchQuery(event.target.value)}/>
+      <RecipeMap searchQuery={searchQuery} getCall={GetRecipes}/>
     </Box>
   );
 };

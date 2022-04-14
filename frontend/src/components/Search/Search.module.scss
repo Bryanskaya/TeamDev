@@ -6,7 +6,8 @@
     border: none;
     border-color: $colorAccent3;
     padding: 0 10px 0 10px;
-
+    align-items: center;
+    column-gap: 10px;
 
     &::placeholder {
         color: $colorText;
@@ -25,7 +26,7 @@
         color: $colorText;
         border: none;
         background: $colorBg;
-        
+        width: 100%;
         
         &:focus-visible {
             outline: none;

@@ -6,7 +6,8 @@ import RecipeCard from "../RecipeCard";
 import styles from "./RecipeMap.module.scss";
 
 interface RecipeBoxProps {
-    getCall: () => Promise<AllRecipeResp>
+    searchQuery?: string
+    getCall: (title?: string) => Promise<AllRecipeResp>
 }
 
 type State = {
@@ -22,13 +23,20 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     }
 
     async getAll() {
-        var data = await this.props.getCall()
+        var data = await this.props.getCall(this.props.searchQuery)
         if (data.status === 200)
             this.setState({postContent: data.content})
     }
 
     componentDidMount() {
+        console.log("Mount")
         this.getAll()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.searchQuery !== prevProps.searchQuery) {
+            this.getAll()
+        }
     }
 
     render() {
