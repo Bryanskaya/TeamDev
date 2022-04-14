@@ -38,7 +38,7 @@ const RecipeCard: React.FC<RecipeProps> = (props) => {
             href={path}
         >
             <Box className={styles.main_box}>
-                <Image src={photoRecipe} className={styles.image_div}
+                <Image src={props.pic_url} className={styles.image_div}
                 />
 
                 <Box className={styles.info_box}
