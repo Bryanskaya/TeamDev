@@ -8,6 +8,7 @@
     padding: 0 10px 0 10px;
     align-items: center;
     column-gap: 10px;
+    background: $colorBg;
 
     &::placeholder {
         color: $colorText;
