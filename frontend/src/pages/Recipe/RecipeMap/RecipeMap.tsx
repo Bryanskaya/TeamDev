@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { AllRecipeResp } from "postAPI/Common"
 import RecipeCard from "../RecipeCard";
 
@@ -17,13 +17,13 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     constructor(props) {
         super(props);
         this.state = {
-            postContent: Array()
+            postContent: []
         }
     }
 
     async getAll() {
         var data = await this.props.getCall()
-        if (data.status == 200)
+        if (data.status === 200)
             this.setState({postContent: data.content})
     }
 
