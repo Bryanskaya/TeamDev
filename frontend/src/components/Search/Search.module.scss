@@ -1,0 +1,40 @@
+@import "/src/styles/variables.scss";
+
+.search {
+    @include shape();
+    width: 100%;    
+    border: none;
+    border-color: $colorAccent3;
+    padding: 0 10px 0 10px;
+
+
+    &::placeholder {
+        color: $colorText;
+        opacity: 0.6;
+    }
+
+    &:hover, &:focus-visible {
+        color: $colorText;
+        box-shadow: 0 0 5px 1px $colorAccent3;
+    }
+
+
+    input {
+        @include shape();
+        @include text-body();
+        color: $colorText;
+        border: none;
+        background: $colorBg;
+        
+        
+        &:focus-visible {
+            outline: none;
+        }    
+    }
+
+    svg {
+        width: 25px;
+        height: 20px;
+    }
+
+}
