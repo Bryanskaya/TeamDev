@@ -7,10 +7,11 @@ import RecipeMap from "../RecipeMap/RecipeMap";
 
 import styles from "./AllRecipesPage.module.scss";
 
-function GetCategories() {
+async function GetCategories() {
   return { 
     status: 200,
-    content: ['peepee', 'poopoo', 'Мороженое', 'Пироги', 'Кондитерские изделия', 'Русская кухня', 'Рецепты детства']
+    content: ['Мороженое', 'Пироги', 'Кондитерские изделия', 'Русская кухня', 'Рецепты детства', 
+    'Рецепты отротчества', 'Рецепты юности']
   }
 }
 

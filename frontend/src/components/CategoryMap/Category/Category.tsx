@@ -1,20 +1,24 @@
 import React from "react";
 import {
-    Box,
     Link,
-    Text
+    LinkProps
 } from "@chakra-ui/react";
 
 import styles from "./Category.module.scss";
 
-interface CategoryProps {
+interface CategoryProps extends LinkProps {
     name: string
 }
 
 const Category: React.FC<CategoryProps> = (props) => {
-    const name = props.name[0].toUpperCase() + props.name.slice(1)
+    let {
+        name = props.name[0].toUpperCase() + props.name.slice(1),
+         ...rest
+     } = props
+
+    // name = props.name[0].toUpperCase() + props.name.slice(1)
     return (
-        <Link className={styles.category}> 
+        <Link className={styles.category} {...rest}> 
             {name}
         </Link>
     )

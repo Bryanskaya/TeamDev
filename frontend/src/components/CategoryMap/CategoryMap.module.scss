@@ -8,4 +8,19 @@
     column-gap: 15px;
     row-gap: 10px;
     flex-wrap: wrap;
+
+    a:first-child {
+        min-width: 50px;
+    }
+}
+
+.category_map_expanded {
+    @extend .category_map;
+    
+}
+
+.category_map_collapsed {
+    @extend .category_map;
+    height: 40px;
+    overflow: hidden;
 }

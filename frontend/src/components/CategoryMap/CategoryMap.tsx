@@ -1,15 +1,12 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { AllCategoriesResp } from "postAPI"
 
 import styles from "./CategoryMap.module.scss";
 import Category from "./Category";
-
-interface CategoryMapProps {
-    getCall: (title?: string) => Promise<AllCategoriesResp>
-}
+import { CategoryMapProps } from ".";
 
 type State = {
+    expanded: boolean
     postContent: string[]
 }
 
@@ -17,6 +14,7 @@ class CategoryMap extends React.Component<CategoryMapProps, State> {
     constructor(props) {
         super(props);
         this.state = {
+            expanded: false,
             postContent: []
         }
     }
@@ -27,14 +25,19 @@ class CategoryMap extends React.Component<CategoryMapProps, State> {
             this.setState({postContent: data.content})
     }
 
+    expandClick() {
+        this.setState({expanded: !this.state.expanded})
+    }
+
     componentDidMount() {
         this.getAll()
     }
 
     render() {
         return (
-            <Box className={styles.category_map}>
-                {this.state.postContent.map(item => <Category name={item}/>)}
+            <Box className={this.state.expanded ? styles.category_map_expanded : styles.category_map_collapsed}>
+                <Category key='...' name='...' onClick={() => this.expandClick()}/>
+                {this.state.postContent.map(item => <Category key={item} name={item}/>)}
             </Box>
         )
     }
