@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Step } from "types/Step";
-import { backUrl } from "../Common";
+import { backUrl } from "..";
 
 
 const PatchStep = async function(data: Step) {

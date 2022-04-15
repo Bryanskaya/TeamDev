@@ -1,5 +1,5 @@
 import axios from "axios";
-import { backUrl } from "../Common";
+import { backUrl } from "..";
 
 export const Logout = async function(removeCookie) {
     const response = await axios.post(backUrl + `/accounts/logout`).catch((error) => {

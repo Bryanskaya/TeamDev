@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AllRecipeResp, backUrl } from "../Common";
+import { AllRecipeResp, backUrl } from "..";
 
 const GetRecipes = async function(title?: string): Promise<AllRecipeResp> {
     const params = { title: title ? title : '' }

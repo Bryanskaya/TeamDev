@@ -1,0 +1,11 @@
+@import "/src/styles/variables.scss";
+
+.category_map {
+    width: 100%;
+    margin-bottom: 30px;
+
+    display: flex;
+    column-gap: 15px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+}

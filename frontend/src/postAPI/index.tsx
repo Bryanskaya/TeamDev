@@ -6,3 +6,9 @@ export type AllRecipeResp = {
     status: number,
     content: Recipe[] | string
 }
+
+export type AllCategoriesResp = {
+    status: number,
+    content: string[]
+}
+
