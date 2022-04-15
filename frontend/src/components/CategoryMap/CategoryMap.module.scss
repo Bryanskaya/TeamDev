@@ -9,6 +9,8 @@
     row-gap: 10px;
     flex-wrap: wrap;
 
+    transition: height 1s ease 0s;
+
     a:first-child {
         min-width: 50px;
     }
@@ -16,11 +18,13 @@
 
 .category_map_expanded {
     @extend .category_map;
-    
+    height: 100%;
+    transition: height 2s ease 0s;
 }
 
 .category_map_collapsed {
     @extend .category_map;
     height: 40px;
     overflow: hidden;
+    transition: height 1s ease -800ms;
 }
