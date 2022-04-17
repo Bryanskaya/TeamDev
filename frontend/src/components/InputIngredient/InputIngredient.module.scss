@@ -1,0 +1,36 @@
+@import "/src/styles/variables.scss";
+
+.add_btn {
+    display: contents !important;
+
+    >div {
+        padding-left: 15px;
+    }
+}
+
+.ready_btn {
+    display: contents !important;
+}
+
+.dark_bg {
+    background-color: $colorBg;
+}
+
+.model_body {
+    column-gap: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    >div {
+        row-gap: 6px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+.img_btn {
+    width: 50px;
+    height: 40px;
+}

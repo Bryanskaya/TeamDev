@@ -1,0 +1,103 @@
+@import "/src/styles/variables.scss";
+
+.flex_style {
+    display: flex;
+    width: 100%;
+}
+
+.img_block {
+    position: relative;
+    padding-right: 15px;
+
+    >img {
+        max-width: none;
+        border-radius: 10px;
+        height: 400px;
+        width: 337px;
+        object-fit: cover;
+    }
+
+    button {
+        display: contents;
+    }
+}
+
+.delete_box {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+
+    >.delete_icon {
+        width: 50px;
+        height: 40px;
+    }
+}
+
+.like_box {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.like_icon {
+    width: 50px;
+    height: 40px;
+}
+
+.info_block {
+    padding-left: 40px;
+    width: 100%;
+
+    >p {
+        @include text-altbody();
+        color: $colorText;
+        align-items: flex-start;
+        height: 156px;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+}
+
+.items_block {
+    display: flex;
+    width: 100%;
+    column-gap: 30px;
+    padding-left: 15px;
+}
+
+.ingredient_box {
+    padding-top: 20px;
+
+    >p {
+        @include text-subtitle();
+        color: $colorTitle;
+        align-items: flex-start;
+        max-height: 156px;
+        padding-left: 15px;
+    }
+}
+
+.step_box {
+    width: 100%;
+
+    >div {
+        padding-top: 20px;
+
+        >p {
+            @include text-subtitle();
+            color: $colorTitle;
+            text-align: left;
+            max-height: 156px;
+            padding-top: 15px;
+        }
+
+        button {
+            display: contents;
+
+            >div {
+                padding-left: 15px;
+                padding-top: 15px;
+            }
+        }
+    }
+}

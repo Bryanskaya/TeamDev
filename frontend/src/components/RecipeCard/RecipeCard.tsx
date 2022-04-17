@@ -8,11 +8,11 @@ import {
   } from "@chakra-ui/react";
 import React from "react";
 
-import FullLike from "components/Icons/FullLike";
 import {Recipe as RecipeI} from "types/Recipe";
 
 import GetLikes from "postAPI/likes/Get";
 import ClockBox from "components/ClockBox";
+import FullLikeBox from "components/FullLikeBox";
 
 import styles from "./RecipeCard.module.scss";
 
@@ -58,11 +58,7 @@ const RecipeCard: React.FC<RecipeProps> = (props) => {
 
                     <HStack>
                         <ClockBox duration={props.duration}/>
-
-                        <Box className={styles.likes_box}> 
-                                <Box> <FullLike /> </Box>
-                                <Text> {likes} </Text>
-                        </Box>
+                        <FullLikeBox likesNum={likes}/>
                     </HStack>
                 </Box>
             </Box>

@@ -1,0 +1,72 @@
+@import "/src/styles/variables.scss";
+@import "../Input/RoundInput.module.scss";
+
+.main_box {
+    padding-bottom: 15px;
+
+    >div {
+        align-items: inherit;
+        min-width: 100px;
+    }
+}
+
+.top_box {
+    width: 100%;
+    justify-content: space-between;
+
+    >.title {
+        @extend .round_input;
+        height: 30px;
+        border-color: $colorAdd1;
+        &::placeholder {
+            color: $colorAccent3;
+        }
+    }
+
+    >p {
+        @include text-body();
+        color: $colorAccent3;
+        height: 30px;
+        margin: 0px;
+        padding-left: 15px;
+        padding-top: 0px;
+    }
+}
+
+.btn {
+    display: contents;
+}
+
+.description_box {
+    @include round-box();
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    border-color: $colorAdd1;
+    width: 100%;
+    min-height: 70px;
+    padding: 3px;
+    padding-left: 10px;
+
+    >p {
+        @include text-body();
+        color: $colorText;
+        height: 100%;
+        margin: 0px;
+    }
+}
+
+.description_input {
+    @extend .description_box;
+    @include text-body();
+    color: $colorText;
+    white-space: normal;
+    resize: none;
+    overflow: hidden;
+
+    &:hover, &:focus-visible {
+        color: $colorText;
+        box-shadow: 0 0 5px 1px $colorAccent3;
+        outline: none;
+    }
+}
