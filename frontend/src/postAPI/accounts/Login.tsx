@@ -1,5 +1,5 @@
 import axios from "axios";
-import { backUrl } from "../Common";
+import { backUrl } from "..";
 import { Account } from "types/Account";
 
 export const Login = async function(data: Account, setCookie) {

@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { AllRecipeResp } from "postAPI/Common"
+import { AllRecipeResp } from "postAPI"
 import RecipeCard from "../RecipeCard";
 
 import styles from "./RecipeMap.module.scss";
@@ -47,4 +47,4 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     }
 }
 
-export default RecipeMap; 
+export default React.memo(RecipeMap);
