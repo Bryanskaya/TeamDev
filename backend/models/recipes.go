@@ -20,6 +20,11 @@ func (this *RecipeM) GetAll(title string) []objects.Recipe {
 	return temp
 }
 
+func (this *RecipeM) GetAllCategories() []objects.Category {
+	temp, _ := this.rep.GetAllCategories()
+	return temp
+}
+
 func (this *RecipeM) GetAuthor(id int) (*objects.Account, error) {
 	rcp, err := this.FindById(id)
 	if err != nil {
@@ -38,6 +43,10 @@ func (this *RecipeM) FindByLogin(login string) ([]objects.Recipe, error) {
 	}
 
 	return this.rep.FindByLogin(login)
+}
+
+func (this *RecipeM) FindByCategory(title string) ([]objects.Recipe, error) {
+	return this.rep.FindByCategory(title)
 }
 
 func (this *RecipeM) FindById(id int) (*objects.Recipe, error) {

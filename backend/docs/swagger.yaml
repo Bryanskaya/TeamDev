@@ -11,6 +11,11 @@ definitions:
         example: admin
         type: string
     type: object
+  objects.CategoryDTO:
+    properties:
+      title:
+        type: string
+    type: object
   objects.IngredientDTO:
     properties:
       amount:
@@ -119,7 +124,7 @@ paths:
   /accounts/{login}/recipes:
     get:
       parameters:
-      - description: Category title
+      - description: Account login
         in: path
         name: login
         required: true
@@ -206,6 +211,40 @@ paths:
       summary: Logging out
       tags:
       - Accounts
+  /categories:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.CategoryDTO'
+            type: array
+      summary: Retrieves all categories
+      tags:
+      - Categories
+  /categories/{title}/recipes:
+    get:
+      parameters:
+      - description: Category title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.RecipeDTO'
+            type: array
+      summary: Retrieves user's recipes
+      tags:
+      - Recipes
   /recipes:
     get:
       parameters:

@@ -25,32 +25,31 @@ func NewAccountsRep(db *gorm.DB) *PGAccountsRep {
 	return &PGAccountsRep{db}
 }
 
-func (this *PGAccountsRep) Create(obj *objects.Account) error {
-	return this.db.Create(obj).Error
+func (rep *PGAccountsRep) Create(obj *objects.Account) error {
+	return rep.db.Create(obj).Error
 }
 
-func (this *PGAccountsRep) CreateList(objArr []objects.Account) error {
+func (rep *PGAccountsRep) CreateList(objArr []objects.Account) error {
 	for _, obj := range objArr {
-		if err := this.Create(&obj); err != nil {
+		if err := rep.Create(&obj); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (this *PGAccountsRep) UpdateRole(login, role string) error {
-	return this.db.Model(&objects.Account{}).Where("login = ?", login).Update("role", role).Error
+func (rep *PGAccountsRep) UpdateRole(login, role string) error {
+	return rep.db.Model(&objects.Account{}).Where("login = ?", login).Update("role", role).Error
 }
 
-func (this *PGAccountsRep) Find(login string) (*objects.Account, error) {
+func (rep *PGAccountsRep) Find(login string) (*objects.Account, error) {
 	temp := new(objects.Account)
-	err := this.db.Where("login = ?", login).First(temp).Error
+	err := rep.db.Where("login = ?", login).First(temp).Error
 	switch err {
 	case nil:
 		break
 	case gorm.ErrRecordNotFound:
 		temp, err = nil, errors.RecordNotFound
-		break
 	default:
 		temp, err = nil, errors.UnknownError
 	}
@@ -58,11 +57,11 @@ func (this *PGAccountsRep) Find(login string) (*objects.Account, error) {
 	return temp, err
 }
 
-func (this *PGAccountsRep) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
+func (rep *PGAccountsRep) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
 	temp := []objects.Account{}
 	recipe := objects.Recipe{Id: id_rcp}
 
-	err := this.db.Model(&recipe).Association("Grades").Find(&temp).Error
+	err := rep.db.Model(&recipe).Association("Grades").Find(&temp).Error
 
 	return temp, err
 }

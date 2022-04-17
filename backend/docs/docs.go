@@ -185,7 +185,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Category title",
+                        "description": "Account login",
                         "name": "login",
                         "in": "path",
                         "required": true
@@ -248,6 +248,59 @@ const docTemplate = `{
                         "description": "Forbidden",
                         "schema": {
                             "type": "Access"
+                        }
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Retrieves all categories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/objects.CategoryDTO"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{title}/recipes": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Retrieves user's recipes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category title",
+                        "name": "title",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/objects.RecipeDTO"
+                            }
                         }
                     }
                 }
@@ -946,6 +999,14 @@ const docTemplate = `{
                 "role": {
                     "type": "string",
                     "example": "admin"
+                }
+            }
+        },
+        "objects.CategoryDTO": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
                 }
             }
         },
