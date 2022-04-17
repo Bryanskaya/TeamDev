@@ -1,0 +1,41 @@
+@import "/src/styles/variables.scss";
+
+.main_box {
+    background-color: red;
+    @include round-box();
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    border-color: $colorAccent1;
+}
+
+.info {
+    align-items: flex-start !important;
+    margin-left: 10px;
+    margin-right: 20px;
+    min-width: 100px;
+
+    >.info_title {
+        @include text-body();
+        color: $colorText;
+        height: 30px;
+        margin: 0px;
+    }
+
+    >.info_amount {
+        @include text-caption();
+        color: $colorAccent3;
+        height: 20px;
+        margin: 0px;
+    }
+}
+
+.del_btn {
+    display: contents !important;
+
+    >div {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+}
