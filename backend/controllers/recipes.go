@@ -20,6 +20,8 @@ type recipe struct {
 func InitRecipes(r *mux.Router, model *models.RecipeM) {
 	ctrl := &recipe{model}
 	r.HandleFunc("/accounts/{login}/recipes", ctrl.getRecipesByLogin).Methods("GET")
+	r.HandleFunc("/categories/{title}/recipes", ctrl.getRecipesByCategory).Methods("GET")
+	r.HandleFunc("/categories", ctrl.getCategories).Methods("GET")
 
 	r.HandleFunc("/recipes", ctrl.getAllRecipes).Methods("GET")
 	r.HandleFunc("/recipes/{id}", ctrl.get).Methods("GET")
@@ -44,7 +46,7 @@ func (ctrl *recipe) getAllRecipes(w http.ResponseWriter, r *http.Request) {
 // @Tags Recipes
 // @Router /accounts/{login}/recipes [get]
 // @Summary Retrieves user's recipes
-// @Param login path string true "Category title"
+// @Param login path string true "Account login"
 // @Produce json
 // @Success 200 {object} []objects.RecipeDTO
 func (ctrl *recipe) getRecipesByLogin(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +54,30 @@ func (ctrl *recipe) getRecipesByLogin(w http.ResponseWriter, r *http.Request) {
 	login := urlParams["login"]
 	data, _ := ctrl.model.FindByLogin(login)
 	responses.JsonSuccess(w, objects.Recipe{}.ArrToDTO(data))
+}
+
+// @Tags Recipes
+// @Router /categories/{title}/recipes [get]
+// @Summary Retrieves user's recipes
+// @Param title path string true "Category title"
+// @Produce json
+// @Success 200 {object} []objects.RecipeDTO
+func (ctrl *recipe) getRecipesByCategory(w http.ResponseWriter, r *http.Request) {
+	urlParams := mux.Vars(r)
+	title := urlParams["title"]
+
+	data, _ := ctrl.model.FindByCategory(title)
+	responses.JsonSuccess(w, objects.Recipe{}.ArrToDTO(data))
+}
+
+// @Tags Categories
+// @Router /categories [get]
+// @Summary Retrieves all categories
+// @Produce json
+// @Success 200 {object} []objects.CategoryDTO
+func (ctrl *recipe) getCategories(w http.ResponseWriter, r *http.Request) {
+	data := ctrl.model.GetAllCategories()
+	responses.JsonSuccess(w, objects.Category{}.ArrToDTO(data))
 }
 
 // @Tags Recipes
