@@ -1,5 +1,5 @@
 import axios from "axios";
-import { backUrl } from "../Common";
+import { backUrl } from "..";
 
 
 const GetLikes = async function(id: number) {

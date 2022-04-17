@@ -28,40 +28,40 @@ func NewIngredientsRep(db *gorm.DB) *PGIngredientsRep {
 }
 
 
-func (this *PGIngredientsRep) Create(obj *objects.Ingredient) error {
-	return this.db.Create(obj).Error
+func (rep *PGIngredientsRep) Create(obj *objects.Ingredient) error {
+	return rep.db.Create(obj).Error
 }
 
-func (this *PGIngredientsRep) CreateList(objArr []objects.Ingredient) error {
+func (rep *PGIngredientsRep) CreateList(objArr []objects.Ingredient) error {
 	for _, obj := range objArr {
-		if err := this.Create(&obj); err != nil {
+		if err := rep.Create(&obj); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (this *PGIngredientsRep) Get(title string) (*objects.Ingredient, error) {
+func (rep *PGIngredientsRep) Get(title string) (*objects.Ingredient, error) {
 	temp := new(objects.Ingredient)
-	err := this.db.Where("LOWER(title) = ?", strings.ToLower(title)).Find(temp).Error
+	err := rep.db.Where("LOWER(title) = ?", strings.ToLower(title)).Find(temp).Error
 	return temp, err
 }
 
-func (this *PGIngredientsRep) FindByRecipe(idRecipe int) ([]objects.RecipeIngredient, error) {
+func (rep *PGIngredientsRep) FindByRecipe(idRecipe int) ([]objects.RecipeIngredient, error) {
 	temp := []objects.RecipeIngredient{}
-	err := this.db.Where(objects.RecipeIngredient{Recipe_id: idRecipe}).Find(&temp).Error
+	err := rep.db.Where(objects.RecipeIngredient{Recipe_id: idRecipe}).Find(&temp).Error
 	return temp, err
 }
 
-func (this *PGIngredientsRep) AddToRecipe(obj *objects.RecipeIngredient) error {
-	return this.db.Create(&obj).Error
+func (rep *PGIngredientsRep) AddToRecipe(obj *objects.RecipeIngredient) error {
+	return rep.db.Create(&obj).Error
 }
 
-func (this *PGIngredientsRep) ReplaceInRecipe(id_rcp int, arr []objects.RecipeIngredient) error {
+func (rep *PGIngredientsRep) ReplaceInRecipe(id_rcp int, arr []objects.RecipeIngredient) error {
 	recipe := objects.Recipe{Id: id_rcp}
-	return this.db.Model(&recipe).Association("RecipeIngredient").Replace(arr).Error
+	return rep.db.Model(&recipe).Association("RecipeIngredient").Replace(arr).Error
 }
 
-func (this *PGIngredientsRep) DelFromRecipe(idRecipe int, title string) error {
-	return this.db.Where("recipe_id = ? AND ingredient_id = ?", idRecipe, title).Delete(&objects.RecipeIngredient{}).Error
+func (rep *PGIngredientsRep) DelFromRecipe(idRecipe int, title string) error {
+	return rep.db.Where("recipe_id = ? AND ingredient_id = ?", idRecipe, title).Delete(&objects.RecipeIngredient{}).Error
 }

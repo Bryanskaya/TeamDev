@@ -4,12 +4,13 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Login from "pages/Login";
-import { HeaderRouter } from "components/Header/Header";
 import SignUp from "pages/Signup";
 import RecipeInfoPage from "pages/Recipe/RecipeInfo";
 import AllRecipesPage from "pages/Recipe/AllRecipes";
 import AuthorRecipesPage from "pages/Recipe/AuthorRecipes";
 import LikedRecipesPage from "pages/Recipe/LikedRecipes";
+import SearchContextProvider from "context/Search";
+import { HeaderRouter } from "components/Header";
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -49,10 +50,12 @@ function NotFound () {
 }
 
 export const App = () => {
-  return (
+  return (    
     <ChakraProvider theme={theme}>
+    <SearchContextProvider>
       <HeaderRouter/>
       <Home />
+    </SearchContextProvider>
     </ChakraProvider>
   )
 };

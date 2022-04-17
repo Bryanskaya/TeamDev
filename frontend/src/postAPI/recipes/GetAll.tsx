@@ -1,9 +1,9 @@
 import axios from "axios";
-import { FramerTreeLayoutContext } from "framer-motion";
-import { AllRecipeResp, backUrl } from "../Common";
+import { AllRecipeResp, backUrl } from "..";
 
-const GetRecipes = async function(): Promise<AllRecipeResp> {
-    const response = await axios.get(backUrl + "/recipes");
+const GetRecipes = async function(title?: string): Promise<AllRecipeResp> {
+    const params = { title: title ? title : '' }
+    const response = await axios.get(backUrl + "/recipes", {params:params});
     return {
         status: response.status,
         content: response.data

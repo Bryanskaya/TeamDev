@@ -15,8 +15,13 @@ func NewRecipe(rep repository.RecipesRep, models *Models) *RecipeM {
 	return &RecipeM{rep, models}
 }
 
-func (this *RecipeM) GetAll() []objects.Recipe {
-	temp := this.rep.List()
+func (this *RecipeM) GetAll(title string) []objects.Recipe {
+	temp, _ := this.rep.FindByTitle(title)
+	return temp
+}
+
+func (this *RecipeM) GetAllCategories() []objects.Category {
+	temp, _ := this.rep.GetAllCategories()
 	return temp
 }
 
@@ -38,6 +43,10 @@ func (this *RecipeM) FindByLogin(login string) ([]objects.Recipe, error) {
 	}
 
 	return this.rep.FindByLogin(login)
+}
+
+func (this *RecipeM) FindByCategory(title string) ([]objects.Recipe, error) {
+	return this.rep.FindByCategory(title)
 }
 
 func (this *RecipeM) FindById(id int) (*objects.Recipe, error) {

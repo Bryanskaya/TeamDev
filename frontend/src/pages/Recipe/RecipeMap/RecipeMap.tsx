@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { AllRecipeResp } from "postAPI/Common"
 import RecipeCard from "../../../components/RecipeCard";
+import { AllRecipeResp } from "postAPI"
 
 import styles from "./RecipeMap.module.scss";
 
 interface RecipeBoxProps {
-    getCall: () => Promise<AllRecipeResp>
+    searchQuery?: string
+    getCall: (title?: string) => Promise<AllRecipeResp>
 }
 
 type State = {
@@ -22,7 +23,7 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
     }
 
     async getAll() {
-        var data = await this.props.getCall()
+        var data = await this.props.getCall(this.props.searchQuery)
         if (data.status === 200)
             this.setState({postContent: data.content})
     }
@@ -31,15 +32,19 @@ class RecipeMap extends React.Component<RecipeBoxProps, State> {
         this.getAll()
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.searchQuery !== prevProps.searchQuery) {
+            this.getAll()
+        }
+    }
+
     render() {
         return (
             <Box className={styles.map_box}>
-                {this.state.postContent.map(item =>
-                    <RecipeCard {...item} key={item.id}/>
-                )}
+                {this.state.postContent.map(item => <RecipeCard {...item} key={item.id}/>)}
             </Box>
         )
     }
 }
 
-export default RecipeMap; 
+export default React.memo(RecipeMap);

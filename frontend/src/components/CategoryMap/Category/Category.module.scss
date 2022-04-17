@@ -1,0 +1,19 @@
+@import "/src/styles/variables.scss";
+
+.category {
+    @include shape();
+    @include text-body();
+
+    flex: none;
+    min-width: 130px;
+    height: 40px;
+    padding: 0 10px 0 10px;
+
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    user-select: none;
+
+    border-color: $colorAccent3;
+    color: $colorText;
+}
