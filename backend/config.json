@@ -3,8 +3,8 @@
         "type": "postgres",
         "user": "postgres", 
         "password": "postgres",
-        "host": "25.20.169.28",
-        "name": "teamdev",
+        "host": "25.41.249.250",
+        "name": "TeamDev",
         "port": "5432"
     },
     "log_file": "logs/%v.log",
