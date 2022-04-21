@@ -1,6 +1,5 @@
 import axios from "axios";
 import { backUrl } from "..";
-import {Ingredient as IngredientT} from "types/Ingredient"
 
 
 const DeleteIngredient = async function(id: number, title: string) {
