@@ -25,7 +25,6 @@ import FullLike from "components/Icons/FullLike";
 import AddIcon from "components/Icons/Add";
 
 import Ingredient from "components/IngredientBox";
-import RoundBox from "components/RoundBox";
 import StepBox from "components/StepBox";
 import IngredientModel from "components/InputIngredient";
 import ClockBox from "components/ClockBox";
@@ -72,14 +71,14 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
 
     async deleteRecipe() {
         var data = await DeleteRecipe(this.id);
-        if (data.status == 200) {
+        if (data.status === 200) {
             window.location.href = '/';
         }
     }
 
     async deleteLike() {
         var data = await DeleteLike(this.id);
-        if (data.status == 200) {
+        if (data.status === 200) {
             this.setState({liked:false});
             this.getLikes();
         }
@@ -87,7 +86,7 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
 
     async addLike() {
         var data = await AddLike(this.id);
-        if (data.status == 200) {
+        if (data.status === 200) {
             this.setState({liked:true});
             this.getLikes();
         }
@@ -95,14 +94,14 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
 
     async getLikes() {
         var data = await GetLikes(this.id)
-        if (data.status == 200) {
+        if (data.status === 200) {
             this.setState({likes: data.content})
         }
     }
 
     async getIsLiked() {
         var data = await GetIsLiked(this.id)
-        if (data.status == 200) {
+        if (data.status === 200) {
             this.setState({liked: data.content})
         }
     }
@@ -116,7 +115,7 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
         }
 
         var data = await PushStep(this.id, step)
-        if (data.status == 200) {
+        if (data.status === 200) {
             var temp = this.state.steps
             temp.push(data.content)
             this.setState({steps: temp})
@@ -125,38 +124,36 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
 
     async putIngredient(data: IngredientT) {
         var res = await PutIngredient(this.id, data)
-        if (res.status == 201) {
+        if (res.status === 201) {
             var ingArr = this.state.ingredients
             ingArr.push(data)
-            console.log('5555')
-            console.log(ingArr)
             this.setState({ingredients: ingArr})
         }
     }
 
     async deleteIngredient(title: string) {
         var data = await DeleteIngredient(this.id, title)
-        if (data.status == 200) {
+        if (data.status === 200) {
             var ingArr = this.state.ingredients
-            ingArr = ingArr.filter(item => item.title != title)
+            ingArr = ingArr.filter(item => item.title !== title)
             this.setState({ingredients: ingArr})
         }
     }
 
     async deleteStep(num: number) {
         var data = await DeleteStep(this.id, num)
-        if (data.status == 200) {
+        if (data.status === 200) {
             var temp = this.state.steps
-            temp = temp.filter(item => item.num != num)
+            temp = temp.filter(item => item.num !== num)
             this.setState({steps: temp})
         }
     }
 
     componentDidMount() {
         GetRecipe(this.id).then(data => {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 this.setState({recipe: data.content})
-                this.setState({isAuthor: this.state.recipe?.author == this.props.cookie.login})
+                this.setState({isAuthor: this.state.recipe?.author === this.props.cookie.login})
 
                 var elem = document.getElementById("title")
                 if (elem && this.state.recipe)
@@ -169,13 +166,13 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
         });
 
         GetIngredient(this.id).then(data => {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 this.setState({ingredients: data.content})
             }
         });
 
         GetSteps(this.id).then(data => {
-            if (data.status == 200) {
+            if (data.status === 200) {
                 this.setState({steps: data.content})
             }
         });
@@ -199,16 +196,14 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
                             </Button>
                             
                             <Button onClick={() => {                                
-                                {this.state.liked 
-                                    && this.deleteLike()
+                                (this.state.liked && this.deleteLike()) 
                                     || this.addLike()
-                                };
                             }
                             }>
+
                                 <Box className={styles.like_box}>
                                     {this.props.cookie.login 
-                                    && (this.state.liked 
-                                        && <FullLike className={styles.like_icon}/> 
+                                    &&  ((this.state.liked && <FullLike className={styles.like_icon}/> )
                                         || <EmptyLike className={styles.like_icon} />)
                                     }
                                 </Box>
@@ -238,8 +233,7 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
                                 }
                             </HStack>
 
-                            <RoundBox width="100%" height="192px" padding="3px"
-                                borderColor="add-1" alignItems="flex-start"> 
+                            <Box className={styles.ings_box}> 
                                 <Box>
                                     {this.state.ingredients.map(item =>
                                         <Ingredient {...item} key={item.title} 
@@ -251,7 +245,7 @@ class RecipeInfoPage extends React.Component<RecipeInfoParams, State> {
                                         />
                                     )}
                                 </Box>
-                            </RoundBox>
+                            </Box>
                         </Box>
                     </Box>
                 </Box>
