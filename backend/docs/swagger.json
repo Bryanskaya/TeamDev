@@ -8,6 +8,26 @@
     },
     "paths": {
         "/accounts": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Retrieves all accounts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/objects.AccountDTO"
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "produces": [
                     "application/json"

@@ -88,6 +88,11 @@ func (this *AccountM) GetRole(login string) (role string, err error) {
 	return acc.Role, err
 }
 
+func (this *AccountM) GetAll() []objects.Account {
+	temp := this.rep.GetAll()
+	return temp
+}
+
 func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error){
 	if acc, err = this.Find(login); err != nil {
 		return nil, err

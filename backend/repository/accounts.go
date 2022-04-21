@@ -13,6 +13,8 @@ type AccountsRep interface {
 
 	Find(login string) (*objects.Account, error)
 	FindLikedRecipe(id_rcp int) ([]objects.Account, error)
+
+	GetAll() ([]objects.Account)
 	
 	UpdateRole(login, role string) error
 }
@@ -55,6 +57,12 @@ func (rep *PGAccountsRep) Find(login string) (*objects.Account, error) {
 	}
 
 	return temp, err
+}
+
+func (rep *PGAccountsRep) GetAll() []objects.Account {
+	temp := []objects.Account{}
+	rep.db.Find(&temp)
+	return temp
 }
 
 func (rep *PGAccountsRep) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
