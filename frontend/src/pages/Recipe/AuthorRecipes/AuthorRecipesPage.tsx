@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import GetRecipes from "postAPI/accounts/GetRecipes";
 import React from "react";
 import { useCookies } from "react-cookie";
-import RecipeMap from "../RecipeMap/RecipeMap";
+import RecipeMap from "../../../components/RecipeMap/RecipeMap";
 
 import styles from "./AuthorRecipesPage.module.scss";
 

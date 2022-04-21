@@ -40,6 +40,8 @@ function Routing() {
 
       <Route path="/recipes/:id" element={<RecipeInfoPage />}/>
 
+      <Route path="/users" element={"users"}/>
+
       <Route path="*" element={<NotFound />}/>
     </Routes>
   </BrowserRouter>

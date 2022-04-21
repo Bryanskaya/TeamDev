@@ -3,7 +3,7 @@ import CategoryMap from "components/CategoryMap";
 import { SearchContext } from "context/Search";
 import GetRecipes from "postAPI/recipes/GetAll";
 import React, { useContext } from "react";
-import RecipeMap from "../RecipeMap/RecipeMap";
+import RecipeMap from "../../../components/RecipeMap/RecipeMap";
 
 import styles from "./AllRecipesPage.module.scss";
 
