@@ -25,12 +25,12 @@ import FullLike from "components/Icons/FullLike";
 import AddIcon from "components/Icons/Add";
 
 import Ingredient from "components/IngredientBox";
-import RoundBox from "components/RoundBox";
-import StepBox from "components/StepBox";
+import RoundBox from "components/Boxes/RoundBox";
+import StepBox from "components/Boxes/Step";
 import IngredientModel from "components/InputIngredient";
-import ClockBox from "components/ClockBox";
-import FullLikeBox from "components/FullLikeBox";
-import PortionBox from "components/PortionBox";
+import ClockBox from "components/Boxes/Clock";
+import FullLikeBox from "components/Boxes/FullLike";
+import PortionBox from "components/Boxes/Portion";
 
 import styles from "./RecipeInfoPage.module.scss";
 

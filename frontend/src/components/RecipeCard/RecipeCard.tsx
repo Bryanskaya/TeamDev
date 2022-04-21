@@ -11,8 +11,8 @@ import React from "react";
 import {Recipe as RecipeI} from "types/Recipe";
 
 import GetLikes from "postAPI/likes/Get";
-import ClockBox from "components/ClockBox";
-import FullLikeBox from "components/FullLikeBox";
+import ClockBox from "components/Boxes/Clock";
+import FullLikeBox from "components/Boxes/FullLike";
 
 import styles from "./RecipeCard.module.scss";
 
