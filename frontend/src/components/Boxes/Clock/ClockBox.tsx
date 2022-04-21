@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    InputProps as IProps, Input as I,
+    InputProps as IProps,
     Box, Text
 } from "@chakra-ui/react";
 import ClockIcon from "components/Icons/Clock";
