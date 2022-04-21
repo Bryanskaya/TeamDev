@@ -12,17 +12,14 @@ interface CategoryProps extends LinkProps {
 }
 
 const Category: React.FC<CategoryProps> = (props) => {
-    let {
-        name = props.name[0].toUpperCase() + props.name.slice(1),
-         ...rest
-     } = props
+    let { name, ...rest } = props
 
-    const path = 'categories/' + props.name
+    if (!rest.onClick)
+        rest.href = 'categories/' + props.name 
 
-    name = capitalize(props.name)
     return (
-        <Link className={styles.category} href={path} {...rest}> 
-            {name}
+        <Link className={styles.category} {...rest}> 
+            {capitalize(props.name)}
         </Link>
     )
 }
