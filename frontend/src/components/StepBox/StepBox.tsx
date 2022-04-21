@@ -1,7 +1,6 @@
-import { Box, HStack, Text, VStack, Button, Textarea, chakra } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack, Button } from "@chakra-ui/react";
 import React from "react";
 
-import RoundBox from "components/RoundBox";
 import Input from "components/Input";
 import {Step as StepT} from "types/Step";
 

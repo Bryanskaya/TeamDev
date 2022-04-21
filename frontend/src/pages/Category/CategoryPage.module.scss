@@ -1,7 +1,5 @@
 @import "/src/styles/variables.scss";
 
 .category_page {
-    display: flex;
-    flex-direction: column;
-
+    @include main-box();
 }

@@ -5,6 +5,7 @@ import {
 } from "@chakra-ui/react";
 
 import styles from "./Category.module.scss";
+import { capitalize } from "functions";
 
 interface CategoryProps extends LinkProps {
     name: string
@@ -18,7 +19,7 @@ const Category: React.FC<CategoryProps> = (props) => {
 
     const path = 'categories/' + props.name
 
-    name = props.name[0].toUpperCase() + props.name.slice(1)
+    name = capitalize(props.name)
     return (
         <Link className={styles.category} href={path} {...rest}> 
             {name}
