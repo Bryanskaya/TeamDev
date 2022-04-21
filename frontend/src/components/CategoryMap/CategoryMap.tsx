@@ -4,10 +4,11 @@ import React from "react";
 import styles from "./CategoryMap.module.scss";
 import Category from "./Category";
 import { CategoryMapProps } from ".";
+import { Category as CategoryT } from "types/Categories";
 
 type State = {
     expanded: boolean
-    postContent: string[]
+    postContent: CategoryT[]
 }
 
 class CategoryMap extends React.Component<CategoryMapProps, State> {
@@ -37,7 +38,7 @@ class CategoryMap extends React.Component<CategoryMapProps, State> {
         return (
             <Box className={this.state.expanded ? styles.category_map_expanded : styles.category_map_collapsed}>
                 <Category key='...' name='...' onClick={() => this.expandClick()}/>
-                {this.state.postContent.map(item => <Category key={item} name={item}/>)}
+                {this.state.postContent.map(item => <Category key={item.title} name={item.title}/>)}
             </Box>
         )
     }

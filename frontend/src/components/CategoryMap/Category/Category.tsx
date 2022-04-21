@@ -16,7 +16,7 @@ const Category: React.FC<CategoryProps> = (props) => {
          ...rest
      } = props
 
-    // name = props.name[0].toUpperCase() + props.name.slice(1)
+    name = props.name[0].toUpperCase() + props.name.slice(1)
     return (
         <Link className={styles.category} {...rest}> 
             {name}
