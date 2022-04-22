@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import SearchHeader from "components/Header/Search";
 import Header from ".";
 import CategoryHeader from "./Category/CategoryHeader";
+import RecipeHeader from "./Recipe/RecipeHeader";
 
 
 export const HeaderRouter: React.FC<{}> = () => {

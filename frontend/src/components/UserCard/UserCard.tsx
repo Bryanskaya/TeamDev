@@ -1,12 +1,9 @@
 import { Box, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
-import {Recipe as RecipeI} from "types/Recipe";
 import {Account as AccountI} from "types/Account";
 
-import GetLikes from "postAPI/likes/Get";
-import ClockBox from "components/ClockBox";
-import FullLikeBox from "components/FullLikeBox";
+import FullLikeBox from "components/Boxes/FullLike/FullLikeBox";
 import LoginBox from "components/LoginBox";
 import RecipeBox from "components/RecipeBox";
 import user from "img/user.png";
@@ -49,7 +46,7 @@ const UserCard: React.FC<UserProps> = (props) => {
                         <RecipeBox data={"Рецепты"} className={styles.recipes}/>
                     </Link>
 
-                    <Link href={pathLiked}>
+                    <Link href={pathLiked}> 
                         <FullLikeBox likesNum={"Понравилось"}/>
                     </Link>
                 </VStack> 
