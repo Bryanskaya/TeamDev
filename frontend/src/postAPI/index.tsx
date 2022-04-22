@@ -1,4 +1,5 @@
 import { Recipe } from "types/Recipe";
+import { Account } from "types/Account";
 
 export const backUrl = "http://localhost:8000";
 
@@ -12,3 +13,7 @@ export type AllCategoriesResp = {
     content: string[]
 }
 
+export type AllUsersResp = {
+    status: number,
+    content: Account[]
+}
