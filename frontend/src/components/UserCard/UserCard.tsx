@@ -19,6 +19,7 @@ interface UserProps extends AccountI {}
 const UserCard: React.FC<UserProps> = (props) => {
     const [likes, change] = React.useState(0);
     const pathRecipes = "/accounts/" + props.login + "/recipes";
+    const pathLiked = "/accounts/" + props.login + "/like";
 
     async function getLikes() {
         // var data = await GetLikes(props.id)
@@ -48,8 +49,9 @@ const UserCard: React.FC<UserProps> = (props) => {
                         <RecipeBox data={"Рецепты"} className={styles.recipes}/>
                     </Link>
 
-                    <FullLikeBox likesNum={"Понравилось"}/>
-                    
+                    <Link href={pathLiked}>
+                        <FullLikeBox likesNum={"Понравилось"}/>
+                    </Link>
                 </VStack> 
 
             </HStack>
