@@ -1,11 +1,4 @@
-import {
-    Box,
-    HStack,
-    Image,
-    Link,
-    Text,
-    VStack,
-  } from "@chakra-ui/react";
+import { Box, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
 import {Recipe as RecipeI} from "types/Recipe";
