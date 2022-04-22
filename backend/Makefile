@@ -1,18 +1,22 @@
-all: swagger build
-	
-build: .
-	mkdir -p logs
-	mkdir -p temp
+all: swagger build test
+
+build: . logs temp
 	go build -o .\temp .
 
-swagger: ./controllers
-	mkdir -p docs
+swagger: ./controllers docs
 	swag init
 
-test:
+mockery:
 	mockery --dir repository --all
-	go test .\... -cover -coverprofile=c.out
-	go tool cover -html=c.out -o coverage.html 
+
+test: mockery logs
+	go test -v -coverprofile=logs/c.out -coverpkg ./models/ ./...
+	go tool cover -html=logs/c.out -o logs/coverage.html 
 
 run: build
 	.\temp\teamdev.exe
+
+# Creating directories
+DIRS?=logs temp
+$(DIRS):
+	mkdir -p $@
