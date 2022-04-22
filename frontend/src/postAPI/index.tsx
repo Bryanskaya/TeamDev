@@ -1,3 +1,4 @@
+import { Category } from "types/Categories";
 import { Recipe } from "types/Recipe";
 import { Account } from "types/Account";
 
@@ -10,7 +11,7 @@ export type AllRecipeResp = {
 
 export type AllCategoriesResp = {
     status: number,
-    content: string[]
+    content: Category[]
 }
 
 export type AllUsersResp = {

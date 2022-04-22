@@ -32,7 +32,7 @@ func InitIngredients(r *mux.Router, model *models.IngredientM) {
 // @Produce json
 // @Success 200 {object} []objects.IngredientDTO
 // @Failure 400 Invalid value
-func (this *ingredientCtrl) getByRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *ingredientCtrl) getByRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -42,7 +42,7 @@ func (this *ingredientCtrl) getByRecipe(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	data, err := this.model.GetByRecipe(id_rcp)
+	data, err := ctrl.model.GetByRecipe(id_rcp)
 
 	switch err {
 	case nil:
@@ -63,7 +63,7 @@ func (this *ingredientCtrl) getByRecipe(w http.ResponseWriter, r *http.Request) 
 // @Produce json
 // @Success 201 Successful opeartion
 // @Failure 400 Invalid value
-func (this *ingredientCtrl) postToRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *ingredientCtrl) postToRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -80,7 +80,7 @@ func (this *ingredientCtrl) postToRecipe(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	err = this.model.PostToRecipe(id_rcp, objects.IngredientDTO{}.ToArrModel(id_rcp, *ingDTO))
+	err = ctrl.model.PostToRecipe(id_rcp, objects.IngredientDTO{}.ToArrModel(id_rcp, *ingDTO))
 	switch err {
 	case nil:
 		responses.SuccessCreation(w, "Posting ingredient/s was successful")
@@ -100,7 +100,7 @@ func (this *ingredientCtrl) postToRecipe(w http.ResponseWriter, r *http.Request)
 // @Param recipe body objects.IngredientDTO true "Ingredient"
 // @Produce json
 // @Success 200
-func (this *ingredientCtrl) putToRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *ingredientCtrl) putToRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -117,7 +117,7 @@ func (this *ingredientCtrl) putToRecipe(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	err = this.model.AddToRecipe(id_rcp, ingDTO.ToModel(id_rcp))
+	err = ctrl.model.AddToRecipe(id_rcp, ingDTO.ToModel(id_rcp))
 	switch err {
 	case nil:
 		responses.SuccessCreation(w, "Adding ingredient was successful")
@@ -137,7 +137,7 @@ func (this *ingredientCtrl) putToRecipe(w http.ResponseWriter, r *http.Request) 
 // @Param title path string true "Recipe's title"
 // @Produce json
 // @Success 200
-func (this *ingredientCtrl) delFromRecipe(w http.ResponseWriter, r *http.Request) {
+func (ctrl *ingredientCtrl) delFromRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 	strTitle := urlParams["title"]
@@ -151,7 +151,7 @@ func (this *ingredientCtrl) delFromRecipe(w http.ResponseWriter, r *http.Request
 	ingDTO := new(objects.IngredientDTO)
 	ingDTO.Title = strTitle
 
-	err = this.model.DelFromRecipe(id_rcp, ingDTO.ToModel(id_rcp))
+	err = ctrl.model.DelFromRecipe(id_rcp, ingDTO.ToModel(id_rcp))
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "The ingredient was successful deleted")

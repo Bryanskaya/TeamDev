@@ -6,17 +6,17 @@ import (
 )
 
 type Ingredient struct {
-	Title string 		`json:"title" gorm:"primary_key"`
+	Title string `json:"title" gorm:"primary_key"`
 
-	Recipes []*Recipe	`gorm:"many2many:recipe_category;"`
+	Recipes []*Recipe `gorm:"many2many:recipe_category;"`
 }
 
 func (Ingredient) TableName() string {
 	return "ingredients"
 }
-func (this *Ingredient) ToDTO() *IngredientDTO {
+func (obj *Ingredient) ToDTO() *IngredientDTO {
 	dto := new(IngredientDTO)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, dto)
 	return dto
 }
@@ -33,11 +33,11 @@ type IngredientDTO struct {
 	Amount string `json:"amount"`
 }
 
-func (this *IngredientDTO) ToModel(idRecipe int) *RecipeIngredient {
+func (obj *IngredientDTO) ToModel(idRecipe int) *RecipeIngredient {
 	mod := new(RecipeIngredient)
 	mod.Recipe_id = idRecipe
-	mod.Amount = this.Amount
-	mod.Ingredient_id = strings.ToLower(this.Title)
+	mod.Amount = obj.Amount
+	mod.Ingredient_id = strings.ToLower(obj.Title)
 	return mod
 }
 

@@ -34,7 +34,7 @@ func InitSteps(r *mux.Router, model *models.StepM) {
 // @Produce json
 // @Success 200 {object} []objects.StepDTO
 // @Failure 400 Invalid value
-func (this *stepCtrl) getAll(w http.ResponseWriter, r *http.Request) {
+func (ctrl *stepCtrl) getAll(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -44,7 +44,7 @@ func (this *stepCtrl) getAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, err := this.model.GetSteps(id_rcp)
+	data, err := ctrl.model.GetSteps(id_rcp)
 
 	switch err {
 	case nil:
@@ -66,7 +66,7 @@ func (this *stepCtrl) getAll(w http.ResponseWriter, r *http.Request) {
 // @Failure 400 Invalid value
 // @Failure 401 Authentication failed
 // @Failure 403 Access denied
-func (this *stepCtrl) post(w http.ResponseWriter, r *http.Request) {
+func (ctrl *stepCtrl) post(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 
@@ -89,10 +89,10 @@ func (this *stepCtrl) post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.AddStep(id_rcp, stepDTO.ToModel(), login)
+	err = ctrl.model.AddStep(id_rcp, stepDTO.ToModel(), login)
 	switch err {
 	case nil:
-		data, _ := this.model.GetStepLast(id_rcp)
+		data, _ := ctrl.model.GetStepLast(id_rcp)
 		responses.JsonSuccess(w, data.ToDTO())
 	case errors.UnknownAccount:
 		responses.RecordNotFound(w, "user")
@@ -115,7 +115,7 @@ func (this *stepCtrl) post(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Success 200 {object} objects.StepDTO
 // @Failure 400 Invalid value
-func (this *stepCtrl) get(w http.ResponseWriter, r *http.Request) {
+func (ctrl *stepCtrl) get(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 	strStep := urlParams["step"]
@@ -132,7 +132,7 @@ func (this *stepCtrl) get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, err := this.model.GetStepByNum(id_rcp, step)
+	data, err := ctrl.model.GetStepByNum(id_rcp, step)
 
 	switch err {
 	case nil:
@@ -154,7 +154,7 @@ func (this *stepCtrl) get(w http.ResponseWriter, r *http.Request) {
 // @Param value body objects.StepDTO true "Step data"
 // @Produce json
 // @Success 200 Successful operation
-func (this *stepCtrl) patch(w http.ResponseWriter, r *http.Request) {
+func (ctrl *stepCtrl) patch(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 	strStep := urlParams["step"]
@@ -184,7 +184,7 @@ func (this *stepCtrl) patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.UpdateStep(cur_login, id_rcp, step, stepDTO.ToModel())
+	err = ctrl.model.UpdateStep(cur_login, id_rcp, step, stepDTO.ToModel())
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "Account updation was successful")
@@ -210,7 +210,7 @@ func (this *stepCtrl) patch(w http.ResponseWriter, r *http.Request) {
 // @Success 200 Successful operation
 // @Failure 400 Invalid value
 // @Failure 401 Authentication failed
-func (this *stepCtrl) del(w http.ResponseWriter, r *http.Request) {
+func (ctrl *stepCtrl) del(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
 	strId := urlParams["id"]
 	strStep := urlParams["step"]
@@ -233,7 +233,7 @@ func (this *stepCtrl) del(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = this.model.DeleteStep(id_rcp, step, login)
+	err = ctrl.model.DeleteStep(id_rcp, step, login)
 	switch err {
 	case nil:
 		responses.TextSuccess(w, "Delete operation was successful")

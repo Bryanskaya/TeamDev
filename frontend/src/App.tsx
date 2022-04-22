@@ -3,14 +3,18 @@ import theme from "./styles/extendTheme";
 import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+
 import Login from "pages/Login";
 import SignUp from "pages/Signup";
 import RecipeInfoPage from "pages/Recipe/RecipeInfo";
 import AllRecipesPage from "pages/Recipe/AllRecipes";
 import AuthorRecipesPage from "pages/Recipe/AuthorRecipes";
 import LikedRecipesPage from "pages/Recipe/LikedRecipes";
+import CategoryPage from "pages/Category";
+
 import SearchContextProvider from "context/Search";
 import { HeaderRouter } from "components/Header";
+
 
 interface HomeProps {}
 const Home: React.FC<HomeProps> = () => {
@@ -41,6 +45,7 @@ function Routing() {
       <Route path="/recipes/:id" element={<RecipeInfoPage />}/>
 
       <Route path="/users" element={"users"}/>
+      <Route path="/categories/:title" element={<CategoryPage />}/>
 
       <Route path="*" element={<NotFound />}/>
     </Routes>

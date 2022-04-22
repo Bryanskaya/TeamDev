@@ -2,8 +2,8 @@ package responses
 
 import (
 	"encoding/json"
-	"net/http"
 	"fmt"
+	"net/http"
 )
 
 func BadRequest(w http.ResponseWriter, msg string) {

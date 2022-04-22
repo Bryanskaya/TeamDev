@@ -1,8 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import SearchHeader from "components/SearchHeader";
+import SearchHeader from "components/Header/Search";
 import Header from ".";
+import CategoryHeader from "./Category/CategoryHeader";
 
 
 export const HeaderRouter: React.FC<{}> = () => {
@@ -16,6 +17,7 @@ export const HeaderRouter: React.FC<{}> = () => {
             <Route path="/auth/signup" element={<Header title="Регистрация" undertitle="Чтобы получить доступ к тысячам новых возможностей в Вашем кулинарном самовыражении!" />}/>
             
             <Route path="/recipes/:id" element={<Header title=""/>}/>
+            <Route path="/categories/:title" element={<CategoryHeader subtitle="Категория" title=""/>}/>
 
             <Route path="*" element={<Header title="Страница не найдена"/>}/>
         </Routes>

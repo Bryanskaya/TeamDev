@@ -20,9 +20,9 @@ type StepDTO struct {
 	Title       string `json:"title"`
 }
 
-func (this *Step) ToDTO() *StepDTO {
+func (obj *Step) ToDTO() *StepDTO {
 	dto := new(StepDTO)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, dto)
 	return dto
 }
@@ -35,9 +35,9 @@ func (Step) ArrToDTO(src []Step) []StepDTO {
 	return dst
 }
 
-func (this *StepDTO) ToModel() *Step {
+func (obj *StepDTO) ToModel() *Step {
 	mod := new(Step)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, mod)
 	return mod
 }

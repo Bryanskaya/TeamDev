@@ -25,13 +25,13 @@ import FullLike from "components/Icons/FullLike";
 import AddIcon from "components/Icons/Add";
 
 import Ingredient from "components/IngredientBox";
-import StepBox from "components/StepBox";
 import IngredientModel from "components/InputIngredient";
-import ClockBox from "components/ClockBox";
-import FullLikeBox from "components/FullLikeBox";
-import PortionBox from "components/PortionBox";
+import ClockBox from "components/Boxes/Clock";
+import FullLikeBox from "components/Boxes/FullLike";
+import PortionBox from "components/Boxes/Portion";
 
 import styles from "./RecipeInfoPage.module.scss";
+import StepBox from "components/Boxes/Step";
 
 
 type State = {

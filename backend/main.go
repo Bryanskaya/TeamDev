@@ -29,7 +29,7 @@ func initDBConnection(cnf utils.DBConfiguration) *gorm.DB {
 
 	db.SingularTable(true)
 
-	db.AutoMigrate (
+	db.AutoMigrate(
 		&objects.Recipe{}, &objects.Account{}, &objects.Category{},
 		&objects.Ingredient{}, &objects.Step{},
 	)
@@ -57,7 +57,7 @@ func main() {
 	defer db.Close()
 
 	r := controllers.InitRouter(db)
-	controllers.RunSwagger(r);
+	controllers.RunSwagger(r)
 	utils.Logger.Print("Server started")
 	fmt.Printf("Server is running on http://localhost:%d\n", utils.Config.Port)
 	code := controllers.RunRouter(r, utils.Config.Port)

@@ -5,5 +5,4 @@ type ModelObject interface {
 }
 
 type DTObject interface {
-
 }

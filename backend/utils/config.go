@@ -8,22 +8,22 @@ import (
 )
 
 type DBConfiguration struct {
-	Type	string	`json:"type"`
-	Name	string	`json:"name"`
+	Type string `json:"type"`
+	Name string `json:"name"`
 
-	User	string	`json:"user"`
-	Password string	`json:"password"`
+	User     string `json:"user"`
+	Password string `json:"password"`
 
-	Host	string	`json:"host"`
-	Port   	string	`json:"port"`
+	Host string `json:"host"`
+	Port string `json:"port"`
 }
 
 type Configuration struct {
-	DB				DBConfiguration		`json:"db"`
-	LogFile			string				`json:"log_file"`
-	Port			uint16				`json:"port"`
-	TokenPassword	string				`json:"token_password"`
-	TokenLiveTime	int64				`json:"token_livetime"`
+	DB            DBConfiguration `json:"db"`
+	LogFile       string          `json:"log_file"`
+	Port          uint16          `json:"port"`
+	TokenPassword string          `json:"token_password"`
+	TokenLiveTime int64           `json:"token_livetime"`
 }
 
 var (
