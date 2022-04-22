@@ -8,13 +8,13 @@ import FullLike from "components/Icons/FullLike";
 import styles from "./FullLikeBox.module.scss";
 
 interface InputProps extends IProps {
-    likesNum?: number
+    likesNum?: number | string
 }
 
 const FullLikeBox: React.FC<InputProps> = (props) => {
     return (
     <Box className={styles.likes_box}> 
-        <Box> <FullLike /> </Box>
+        <FullLike />
         <Text> {props.likesNum} </Text>
     </Box>
     )
