@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	AdminRole string = "admin"
-	UserRole string = "user"
+	AdminRole  string = "admin"
+	UserRole   string = "user"
 	UnauthRole string = "unauthorized"
 )
 
 type AccountM struct {
-	rep repository.AccountsRep
+	rep    repository.AccountsRep
 	models *Models
 }
 
@@ -88,7 +88,7 @@ func (this *AccountM) GetRole(login string) (role string, err error) {
 	return acc.Role, err
 }
 
-func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error){
+func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error) {
 	if acc, err = this.Find(login); err != nil {
 		return nil, err
 	}

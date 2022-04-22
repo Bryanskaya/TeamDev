@@ -7,10 +7,10 @@ import (
 )
 
 type Models struct {
-	Accounts *AccountM
-	Recipes *RecipeM
+	Accounts    *AccountM
+	Recipes     *RecipeM
 	Ingredients *IngredientM
-	Steps *StepM
+	Steps       *StepM
 }
 
 func InitModels(db *gorm.DB) *Models {

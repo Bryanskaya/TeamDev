@@ -6,19 +6,19 @@ import (
 )
 
 type Recipe struct {
-	Id          int				`json:"id" gorm:"primary_key"`
-	Author      string			`json:"author" gorm:"foreignkey:Login"`
-	Title       string			`json:"title"`
-	CreatedAt   time.Time		`json:"created_at"`
-	Description string     		`json:"description"`
-	Duration    int 			`json:"duration"`
-	PortionNum  int				`json:"portion_num"`
-	PicUrl		string			`json:"pic_url"`
+	Id          int       `json:"id" gorm:"primary_key"`
+	Author      string    `json:"author" gorm:"foreignkey:Login"`
+	Title       string    `json:"title"`
+	CreatedAt   time.Time `json:"created_at"`
+	Description string    `json:"description"`
+	Duration    int       `json:"duration"`
+	PortionNum  int       `json:"portion_num"`
+	PicUrl      string    `json:"pic_url"`
 
-	Categories []*Category		`gorm:"many2many:recipe_category;"`
-	Ingredients []*Ingredient	`gorm:"many2many:recipe_ingredient;"`
+	Categories       []*Category   `gorm:"many2many:recipe_category;"`
+	Ingredients      []*Ingredient `gorm:"many2many:recipe_ingredient;"`
 	RecipeIngredient []*RecipeIngredient
-	Grades []*Account			`gorm:"many2many:grades;"`
+	Grades           []*Account `gorm:"many2many:grades;"`
 }
 
 func (Recipe) TableName() string {
@@ -28,7 +28,7 @@ func (Recipe) TableName() string {
 func (this *Recipe) ToDTO() *RecipeDTO {
 	dto := new(RecipeDTO)
 	jsonStr, _ := json.Marshal(this)
-	json.Unmarshal(jsonStr, dto) 
+	json.Unmarshal(jsonStr, dto)
 	return dto
 }
 
@@ -40,21 +40,22 @@ func (Recipe) ArrToDTO(src []Recipe) []RecipeDTO {
 	return dst
 }
 
-
 type RecipeDTO struct {
-	Id          int			`json:"id"`
-	Author      string		`json:"author"`
-	Title       string		`json:"title"`
-	CreatedAt   string		`json:"created_at"`
-	Description string     	`json:"description"`
-	Duration    int			`json:"duration"`
-	PortionNum  int			`json:"portion_num"`
-	PicUrl		string		`json:"pic_url"`
+	Id          int    `json:"id"`
+	Author      string `json:"author"`
+	Title       string `json:"title"`
+	CreatedAt   string `json:"created_at"`
+	Description string `json:"description"`
+	Duration    int    `json:"duration"`
+	PortionNum  int    `json:"portion_num"`
+	PicUrl      string `json:"pic_url"`
 }
 
 func (this *RecipeDTO) ToModel() *Recipe {
 	mod := new(Recipe)
-	if (this.CreatedAt == "") { this.CreatedAt = "0001-01-01T00:00:00.000Z" }
+	if this.CreatedAt == "" {
+		this.CreatedAt = "0001-01-01T00:00:00.000Z"
+	}
 
 	jsonStr, _ := json.Marshal(this)
 	json.Unmarshal(jsonStr, mod)

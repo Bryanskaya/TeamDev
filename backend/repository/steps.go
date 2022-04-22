@@ -9,7 +9,7 @@ import (
 type StepsRep interface {
 	Create(obj *objects.Step) error
 	CreateList(obj []objects.Step) error
-	
+
 	List(recipeId int) ([]objects.Step, error)
 	FindSteps(id_rcp int) ([]objects.Step, error)
 	FindStepByNum(id_rcp, step int) (objects.Step, error)

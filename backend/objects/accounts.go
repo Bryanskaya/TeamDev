@@ -10,13 +10,13 @@ type Account struct {
 	Salt           string `json:"salt"`
 	HashedPassword string `json:"hashed_password"`
 
-	Grades []*Recipe			`gorm:"many2many:grades;"`
+	Grades []*Recipe `gorm:"many2many:grades;"`
 }
 
 type AccountDTO struct {
-	Login			string `json:"login" example:"admin"`
-	Role			string `json:"role" example:"admin"`
-	Password		string `json:"password" example:"admin"`
+	Login    string `json:"login" example:"admin"`
+	Role     string `json:"role" example:"admin"`
+	Password string `json:"password" example:"admin"`
 }
 
 func (Account) TableName() string {
@@ -26,7 +26,7 @@ func (Account) TableName() string {
 func (this *Account) ToDTO() *AccountDTO {
 	dto := new(AccountDTO)
 	jsonStr, _ := json.Marshal(this)
-	json.Unmarshal(jsonStr, dto) 
+	json.Unmarshal(jsonStr, dto)
 	return dto
 }
 

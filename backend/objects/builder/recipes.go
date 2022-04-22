@@ -6,25 +6,27 @@ import (
 )
 
 type RecipeBuilder struct {
-	Id          int				
-	Author      string			
-	Title       string			
-	CreatedAt   time.Time		
-	Description string     		
-	Duration    int 			
+	Id          int
+	Author      string
+	Title       string
+	CreatedAt   time.Time
+	Description string
+	Duration    int
 	PortionNum  int
 }
-func newRecipeBuilder() *RecipeBuilder { 
-	return new(RecipeBuilder) 
+
+func newRecipeBuilder() *RecipeBuilder {
+	return new(RecipeBuilder)
 }
-func (builder *RecipeBuilder) Build() *objects.Recipe { 
-	return &objects.Recipe{Id: builder.Id, Author: builder.Author, 
+func (builder *RecipeBuilder) Build() *objects.Recipe {
+	return &objects.Recipe{Id: builder.Id, Author: builder.Author,
 		Title: builder.Title, CreatedAt: builder.CreatedAt,
 		Description: builder.Description, Duration: builder.Duration,
-		PortionNum: builder.PortionNum} 
+		PortionNum: builder.PortionNum}
 }
 
 type RecipeMother struct{}
+
 func (RecipeMother) Obj0() *objects.Recipe {
 	b := newRecipeBuilder()
 	b.Id = 1
@@ -60,7 +62,7 @@ func (RecipeMother) Obj2() *objects.Recipe {
 }
 func (mother RecipeMother) All() []objects.Recipe {
 	objArr := []objects.Recipe{
-		*mother.Obj0(), 
+		*mother.Obj0(),
 		*mother.Obj1(),
 		*mother.Obj2(),
 	}

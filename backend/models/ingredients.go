@@ -7,7 +7,7 @@ import (
 )
 
 type IngredientM struct {
-	rep repository.IngredientsRep
+	rep    repository.IngredientsRep
 	models *Models
 }
 
@@ -63,7 +63,7 @@ func (this *IngredientM) PostToRecipe(id_rcp int, ingArr *[]objects.RecipeIngred
 			return err
 		}
 	}
-	
+
 	return this.rep.ReplaceInRecipe(id_rcp, *ingArr)
 }
 

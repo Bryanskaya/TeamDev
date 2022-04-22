@@ -46,7 +46,7 @@ func (StepMother) Obj2() *objects.Step {
 
 func (mother StepMother) All() []objects.Step {
 	objArr := []objects.Step{
-		*mother.Obj0(), 
+		*mother.Obj0(),
 		*mother.Obj1(),
 		*mother.Obj2(),
 	}

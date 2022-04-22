@@ -33,7 +33,9 @@ func (this *RecipeM) GetAuthor(id int) (*objects.Account, error) {
 
 	login := rcp.Author
 	acc, err := this.models.Accounts.Find(login)
-	if err != nil { err = errors.UnknownAccount }
+	if err != nil {
+		err = errors.UnknownAccount
+	}
 	return acc, err
 }
 
@@ -129,7 +131,7 @@ func (this *RecipeM) DeleteRecipe(id int, login string) (err error) {
 
 func (this *RecipeM) IsLiked(id_rcp int, login string) (res bool, err error) {
 	res = false
-	
+
 	if this.models.Accounts.IsExists(login) == false {
 		return res, errors.UnknownAccount
 	}

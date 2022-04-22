@@ -27,7 +27,6 @@ func NewIngredientsRep(db *gorm.DB) *PGIngredientsRep {
 	return &PGIngredientsRep{db}
 }
 
-
 func (rep *PGIngredientsRep) Create(obj *objects.Ingredient) error {
 	return rep.db.Create(obj).Error
 }

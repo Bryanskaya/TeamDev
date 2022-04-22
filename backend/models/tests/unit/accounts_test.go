@@ -14,7 +14,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-
 // Find account
 func TestFindAccount(t *testing.T) {
 	t.Run("account exists", func(t *testing.T) {
@@ -108,7 +107,6 @@ func TestGetRole(t *testing.T) {
 	})
 }
 
-
 func TestLogin(t *testing.T) {
 	t.Run("account exists, correct password", func(t *testing.T) {
 		db, err := tests.StubConnecton()
@@ -199,26 +197,26 @@ func TestCreateAccount(t *testing.T) {
 		mockRep := new(mocks.AccountsRep)
 		model := models.NewAccount(mockRep, nil)
 		obj := dbuilder.AccountMother{}.Obj0()
-	
+
 		mockRep.On("Find", obj.Login).Return(obj, nil).Once()
 		// mockRep.On("Create", obj).Return().Once()
-	
+
 		err := model.Create(obj)
-	
+
 		assert.Equal(t, errors.AccountExists, err, "Create account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})
-	
+
 	t.Run("creation failed", func(t *testing.T) {
 		mockRep := new(mocks.AccountsRep)
 		model := models.NewAccount(mockRep, nil)
 		obj := dbuilder.AccountMother{}.Obj0()
-	
+
 		mockRep.On("Find", obj.Login).Return(nil, errors.RecordNotFound).Once()
 		mockRep.On("Create", obj).Return(err.New("")).Once()
-	
+
 		err := model.Create(obj)
-	
+
 		assert.Equal(t, errors.DBAdditionError, err, "Create account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})
@@ -232,13 +230,13 @@ func TestUpdateRole(t *testing.T) {
 		objCur := dbuilder.AccountMother{}.Obj0()
 		objGoal := dbuilder.AccountMother{}.Obj1()
 		objUdp := dbuilder.AccountMother{}.Obj1Udp()
-	
+
 		mockRep.On("Find", objCur.Login).Return(objCur, nil).Once()
 		mockRep.On("Find", objGoal.Login).Return(objGoal, nil).Once()
 		mockRep.On("UpdateRole", objGoal.Login, objUdp.Role).Return(nil).Once()
-	
+
 		err := model.UpdateRole(objCur.Login, objGoal.Login, objUdp.Role)
-	
+
 		assert.Nil(t, err, "Update account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})
@@ -249,13 +247,13 @@ func TestUpdateRole(t *testing.T) {
 		objCur := dbuilder.AccountMother{}.Obj0()
 		objGoal := dbuilder.AccountMother{}.Obj1()
 		objUdp := dbuilder.AccountMother{}.Obj1Udp()
-	
+
 		mockRep.On("Find", objCur.Login).Return(nil, errors.RecordNotFound).Once()
 		// mockRep.On("Find", objGoal.Login).Return(objGoal, nil).Once()
 		// mockRep.On("UpdateRole", objGoal.Login, objUdp.Role).Return(nil).Once()
-	
+
 		err := model.UpdateRole(objCur.Login, objGoal.Login, objUdp.Role)
-	
+
 		assert.Equal(t, errors.UnknownAccount, err, "Update account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})
@@ -266,13 +264,13 @@ func TestUpdateRole(t *testing.T) {
 		objCur := dbuilder.AccountMother{}.Obj1()
 		objGoal := dbuilder.AccountMother{}.Obj0()
 		objUdp := dbuilder.AccountMother{}.Obj1Udp()
-	
+
 		mockRep.On("Find", objCur.Login).Return(objCur, nil).Once()
 		// mockRep.On("Find", objGoal.Login).Return(objGoal, nil).Once()
 		// mockRep.On("UpdateRole", objGoal.Login, objUdp.Role).Return(nil).Once()
-	
+
 		err := model.UpdateRole(objCur.Login, objGoal.Login, objUdp.Role)
-	
+
 		assert.Equal(t, errors.AccessDenied, err, "Update account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})
@@ -283,13 +281,13 @@ func TestUpdateRole(t *testing.T) {
 		objCur := dbuilder.AccountMother{}.Obj0()
 		objGoal := dbuilder.AccountMother{}.Obj1()
 		objUdp := dbuilder.AccountMother{}.Obj1Udp()
-	
+
 		mockRep.On("Find", objCur.Login).Return(objCur, nil).Once()
 		mockRep.On("Find", objGoal.Login).Return(nil, errors.RecordNotFound).Once()
 		// mockRep.On("UpdateRole", objGoal.Login, objUdp.Role).Return(nil).Once()
-	
+
 		err := model.UpdateRole(objCur.Login, objGoal.Login, objUdp.Role)
-	
+
 		assert.Equal(t, errors.UnknownAccount, err, "Update account have unexpected error")
 		mockRep.AssertExpectations(t)
 	})

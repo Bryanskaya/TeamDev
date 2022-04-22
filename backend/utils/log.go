@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	Logger *log.Logger
+	Logger  *log.Logger
 	logFile *os.File
 )
 
@@ -30,11 +30,10 @@ func CloseLogger() {
 	logFile.Close()
 }
 
-
 var LogHandler = func(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		Logger.Printf("%s REQUEST\t URL:%s \tAddress: %s", r.Method, r.URL, r.RemoteAddr)
 
 		next.ServeHTTP(w, r)
-	}) 
+	})
 }

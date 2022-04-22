@@ -7,10 +7,11 @@ import (
 )
 
 const SaltLen = 64
-func rndSalt(size int) (salt string){
+
+func rndSalt(size int) (salt string) {
 	genSalt := make([]byte, size)
 	for i := 0; i < size; i++ {
-		genSalt[i] = byte(rand.Intn(127 - 32) + 32)
+		genSalt[i] = byte(rand.Intn(127-32) + 32)
 	}
 	return string(genSalt)
 }
@@ -25,7 +26,7 @@ func HashPassword(password string, oldSalt ...string) (salt, hash string) {
 		salt = rndSalt(SaltLen)
 	}
 
-	hashByte, _ := bcrypt.GenerateFromPassword([]byte(password + salt), bcrypt.DefaultCost)
+	hashByte, _ := bcrypt.GenerateFromPassword([]byte(password+salt), bcrypt.DefaultCost)
 	hash = string(hashByte)
 
 	return
@@ -35,6 +36,6 @@ func HashPassword(password string, oldSalt ...string) (salt, hash string) {
 Confirming password with stored salt and hash
 */
 func CmpPassword(password, salt, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password + salt))
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password+salt))
 	return err == nil
 }
