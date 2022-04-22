@@ -1,0 +1,31 @@
+@import "/src/styles/variables.scss";
+
+.recipe_box {
+    @include round-box();
+    width: 120px;
+    height: 30px;
+    border-color: $colorAccent1;
+    align-items: center;
+
+    >p {
+        @include text-body;
+        color: $colorText;
+        margin-left: 2px;
+    }
+
+    >div {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    >path {
+        fill: $colorButton;
+    }
+}
+
