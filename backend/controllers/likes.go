@@ -160,7 +160,7 @@ func (ctrl *likesCtrl) getByUser(w http.ResponseWriter, r *http.Request) {
 // @Summary Retrieves the recipe's amount of likes
 // @Param id path int true "Recipe id"
 // @Produce json
-// @Success 200 {string} string 
+// @Success 200 {string} string
 // @Failure 400 Invalid value
 func (ctrl *likesCtrl) getAmount(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
@@ -188,7 +188,7 @@ func (ctrl *likesCtrl) getAmount(w http.ResponseWriter, r *http.Request) {
 // @Summary Retrieves true if user liked the recipe
 // @Param id path int true "Recipe id"
 // @Produce json
-// @Success 200 {bool} bool 
+// @Success 200 {bool} bool
 // @Failure 400 Invalid value
 func (ctrl *likesCtrl) isLiked(w http.ResponseWriter, r *http.Request) {
 	login, err := auth.LoginFromCookie(r)

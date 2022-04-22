@@ -12,14 +12,14 @@ type RecipesRep interface {
 	CreateList(objArr []objects.Recipe) error
 
 	List() []objects.Recipe
-	FindByTitle(title string)  ([]objects.Recipe, error)
+	FindByTitle(title string) ([]objects.Recipe, error)
 	FindByLogin(login string) ([]objects.Recipe, error)
 	FindByCategory(title string) ([]objects.Recipe, error)
 	FindById(id int) (*objects.Recipe, error)
 	GetLikedByLogin(login string) ([]objects.Recipe, error)
 	GetAmountGrades(id int) int
 	GetAllCategories() ([]objects.Category, error)
-	
+
 	Delete(id int) error
 	AddGrade(id int, login string) error
 	DeleteGrade(id int, login string) error
@@ -41,7 +41,7 @@ func (rep *PGRecipesRep) List() []objects.Recipe {
 	return temp
 }
 
-func (rep *PGRecipesRep) FindByTitle(title string)  ([]objects.Recipe, error) {
+func (rep *PGRecipesRep) FindByTitle(title string) ([]objects.Recipe, error) {
 	temp := []objects.Recipe{}
 	err := rep.db.Where("LOWER(title) LIKE LOWER(?)", "%"+title+"%").Find(&temp).Error
 	switch err {
@@ -53,7 +53,7 @@ func (rep *PGRecipesRep) FindByTitle(title string)  ([]objects.Recipe, error) {
 		return nil, errors.UnknownError
 	}
 }
-func (rep *PGRecipesRep) FindByLogin(login string)  ([]objects.Recipe, error) {
+func (rep *PGRecipesRep) FindByLogin(login string) ([]objects.Recipe, error) {
 	temp := []objects.Recipe{}
 	err := rep.db.Where("author = ?", login).Find(&temp).Error
 	switch err {
@@ -112,12 +112,18 @@ func (rep *PGRecipesRep) Delete(id int) error {
 	recipe := objects.Recipe{Id: id}
 
 	err := rep.db.Model(&recipe).Association("Categories").Clear().Error
-	if err != nil { return err }
+	if err != nil {
+		return err
+	}
 	err = rep.db.Model(&recipe).Association("Ingredients").Clear().Error
-	if err != nil { return err }
+	if err != nil {
+		return err
+	}
 	err = rep.db.Model(&recipe).Association("Grades").Clear().Error
-	if err != nil { return err }
-	
+	if err != nil {
+		return err
+	}
+
 	return rep.db.Where("id = ?", id).Delete(&objects.Recipe{}).Error
 }
 
@@ -156,7 +162,6 @@ func (rep *PGRecipesRep) GetAllCategories() ([]objects.Category, error) {
 		return nil, errors.UnknownError
 	}
 }
-
 
 func (rep *PGRecipesRep) IsLiked(id_rcp int, login string) bool {
 	recipe := objects.Recipe{Id: id_rcp}

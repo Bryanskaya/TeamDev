@@ -15,52 +15,54 @@ func NewRecipe(rep repository.RecipesRep, models *Models) *RecipeM {
 	return &RecipeM{rep, models}
 }
 
-func (this *RecipeM) GetAll(title string) []objects.Recipe {
-	temp, _ := this.rep.FindByTitle(title)
+func (model *RecipeM) GetAll(title string) []objects.Recipe {
+	temp, _ := model.rep.FindByTitle(title)
 	return temp
 }
 
-func (this *RecipeM) GetAllCategories() []objects.Category {
-	temp, _ := this.rep.GetAllCategories()
+func (model *RecipeM) GetAllCategories() []objects.Category {
+	temp, _ := model.rep.GetAllCategories()
 	return temp
 }
 
-func (this *RecipeM) GetAuthor(id int) (*objects.Account, error) {
-	rcp, err := this.FindById(id)
+func (model *RecipeM) GetAuthor(id int) (*objects.Account, error) {
+	rcp, err := model.FindById(id)
 	if err != nil {
 		return nil, errors.UnknownRecipe
 	}
 
 	login := rcp.Author
-	acc, err := this.models.Accounts.Find(login)
-	if err != nil { err = errors.UnknownAccount }
+	acc, err := model.models.Accounts.Find(login)
+	if err != nil {
+		err = errors.UnknownAccount
+	}
 	return acc, err
 }
 
-func (this *RecipeM) FindByLogin(login string) ([]objects.Recipe, error) {
-	if !this.models.Accounts.IsExists(login) {
+func (model *RecipeM) FindByLogin(login string) ([]objects.Recipe, error) {
+	if !model.models.Accounts.IsExists(login) {
 		return nil, errors.UnknownAccount
 	}
 
-	return this.rep.FindByLogin(login)
+	return model.rep.FindByLogin(login)
 }
 
-func (this *RecipeM) FindByCategory(title string) ([]objects.Recipe, error) {
-	return this.rep.FindByCategory(title)
+func (model *RecipeM) FindByCategory(title string) ([]objects.Recipe, error) {
+	return model.rep.FindByCategory(title)
 }
 
-func (this *RecipeM) FindById(id int) (*objects.Recipe, error) {
-	return this.rep.FindById(id)
+func (model *RecipeM) FindById(id int) (*objects.Recipe, error) {
+	return model.rep.FindById(id)
 }
 
-func (this *RecipeM) AddRecipe(obj *objects.Recipe) error {
-	_, err := this.models.Accounts.Find(obj.Author)
+func (model *RecipeM) AddRecipe(obj *objects.Recipe) error {
+	_, err := model.models.Accounts.Find(obj.Author)
 	if err != nil {
 		return errors.UnknownAccount
 	}
 
 	// TODO: validate other data
-	err = this.rep.Create(obj)
+	err = model.rep.Create(obj)
 	return err
 }
 
@@ -70,56 +72,56 @@ func (obj *RecipeM) AddGrade(id int, login string) error {
 		return errors.UnknownRecipe
 	}
 
-	if obj.models.Accounts.IsExists(login) == false {
+	if !obj.models.Accounts.IsExists(login) {
 		return errors.UnknownAccount
 	}
 
 	return obj.rep.AddGrade(id, login)
 }
 
-func (this *RecipeM) DeleteGrade(id_rcp int, login string) error {
-	_, err := this.models.Recipes.FindById(id_rcp)
+func (model *RecipeM) DeleteGrade(id_rcp int, login string) error {
+	_, err := model.models.Recipes.FindById(id_rcp)
 	if err != nil {
 		return errors.UnknownRecipe
 	}
 
-	if this.models.Accounts.IsExists(login) == false {
+	if !model.models.Accounts.IsExists(login) {
 		return errors.UnknownAccount
 	}
 
-	return this.rep.DeleteGrade(id_rcp, login)
+	return model.rep.DeleteGrade(id_rcp, login)
 }
 
-func (this *RecipeM) GetAmountGrades(id_rcp int) (int, error) {
-	_, err := this.models.Recipes.FindById(id_rcp)
+func (model *RecipeM) GetAmountGrades(id_rcp int) (int, error) {
+	_, err := model.models.Recipes.FindById(id_rcp)
 	if err != nil {
 		return 0, errors.UnknownRecipe
 	}
 
-	return this.rep.GetAmountGrades(id_rcp), nil
+	return model.rep.GetAmountGrades(id_rcp), nil
 }
 
-func (this *RecipeM) GetLikedByLogin(login string) ([]objects.Recipe, error) {
-	if this.models.Accounts.IsExists(login) == false {
+func (model *RecipeM) GetLikedByLogin(login string) ([]objects.Recipe, error) {
+	if !model.models.Accounts.IsExists(login) {
 		return nil, errors.UnknownAccount
 	}
 
-	return this.rep.GetLikedByLogin(login)
+	return model.rep.GetLikedByLogin(login)
 }
 
-func (this *RecipeM) DeleteRecipe(id int, login string) (err error) {
-	userRole, err := this.models.Accounts.GetRole(login)
+func (model *RecipeM) DeleteRecipe(id int, login string) (err error) {
+	userRole, err := model.models.Accounts.GetRole(login)
 	if err != nil {
 		return err
 	}
 
-	author, err := this.GetAuthor(id)
+	author, err := model.GetAuthor(id)
 	if err != nil {
 		return err
 	}
 
 	if userRole == AdminRole || login == author.Login {
-		err = this.rep.Delete(id)
+		err = model.rep.Delete(id)
 	} else {
 		err = errors.AccessDeleteDenied
 	}
@@ -127,19 +129,19 @@ func (this *RecipeM) DeleteRecipe(id int, login string) (err error) {
 	return err
 }
 
-func (this *RecipeM) IsLiked(id_rcp int, login string) (res bool, err error) {
+func (model *RecipeM) IsLiked(id_rcp int, login string) (res bool, err error) {
 	res = false
-	
-	if this.models.Accounts.IsExists(login) == false {
+
+	if !model.models.Accounts.IsExists(login) {
 		return res, errors.UnknownAccount
 	}
 
-	_, err = this.models.Recipes.FindById(id_rcp)
+	_, err = model.models.Recipes.FindById(id_rcp)
 	if err != nil {
 		return res, errors.UnknownRecipe
 	}
 
-	res = this.rep.IsLiked(id_rcp, login)
+	res = model.rep.IsLiked(id_rcp, login)
 
 	return res, nil
 }

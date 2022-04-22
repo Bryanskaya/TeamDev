@@ -6,5 +6,5 @@ import (
 
 var (
 	UnknownStep = errors.New("Step is not found")
-	StepExists = errors.New("Step is already exists")
+	StepExists  = errors.New("Step is already exists")
 )

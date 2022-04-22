@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	AdminRole string = "admin"
-	UserRole string = "user"
+	AdminRole  string = "admin"
+	UserRole   string = "user"
 	UnauthRole string = "unauthorized"
 )
 
 type AccountM struct {
-	rep repository.AccountsRep
+	rep    repository.AccountsRep
 	models *Models
 }
 
@@ -22,15 +22,15 @@ func NewAccount(rep repository.AccountsRep, models *Models) *AccountM {
 	return &AccountM{rep, models}
 }
 
-func (this *AccountM) Create(obj *objects.Account) error {
-	if this.IsExists(obj.Login) {
+func (model *AccountM) Create(obj *objects.Account) error {
+	if model.IsExists(obj.Login) {
 		return errors.AccountExists
 	}
 
 	obj.Role = UserRole
 	obj.Salt, obj.HashedPassword = utils.HashPassword(obj.HashedPassword)
 
-	err := this.rep.Create(obj)
+	err := model.rep.Create(obj)
 	if err != nil {
 		return errors.DBAdditionError
 	}
@@ -38,8 +38,8 @@ func (this *AccountM) Create(obj *objects.Account) error {
 	return err
 }
 
-func (this *AccountM) UpdateRole(cur_login, login, role string) error {
-	cur_role, err := this.GetRole(cur_login)
+func (model *AccountM) UpdateRole(cur_login, login, role string) error {
+	cur_role, err := model.GetRole(cur_login)
 	if err != nil {
 		return errors.UnknownAccount
 	}
@@ -48,7 +48,7 @@ func (this *AccountM) UpdateRole(cur_login, login, role string) error {
 		return errors.AccessDenied
 	}
 
-	if this.IsExists(login) == false {
+	if !model.IsExists(login) {
 		return errors.UnknownAccount
 	}
 
@@ -56,30 +56,30 @@ func (this *AccountM) UpdateRole(cur_login, login, role string) error {
 		return errors.UnknownRole
 	}
 
-	return this.rep.UpdateRole(login, role)
+	return model.rep.UpdateRole(login, role)
 }
 
-func (this *AccountM) Find(login string) (*objects.Account, error) {
-	return this.rep.Find(login)
+func (model *AccountM) Find(login string) (*objects.Account, error) {
+	return model.rep.Find(login)
 }
 
-func (this *AccountM) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
-	_, err := this.models.Recipes.FindById(id_rcp)
+func (model *AccountM) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
+	_, err := model.models.Recipes.FindById(id_rcp)
 	if err != nil {
 		return nil, errors.UnknownRecipe
 	}
 
-	return this.rep.FindLikedRecipe(id_rcp)
+	return model.rep.FindLikedRecipe(id_rcp)
 }
 
-func (this *AccountM) IsExists(login string) bool {
-	_, err := this.Find(login)
+func (model *AccountM) IsExists(login string) bool {
+	_, err := model.Find(login)
 
 	return err == nil
 }
 
-func (this *AccountM) GetRole(login string) (role string, err error) {
-	acc, err := this.Find(login)
+func (model *AccountM) GetRole(login string) (role string, err error) {
+	acc, err := model.Find(login)
 
 	if err != nil {
 		return "", err
@@ -88,8 +88,8 @@ func (this *AccountM) GetRole(login string) (role string, err error) {
 	return acc.Role, err
 }
 
-func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error){
-	if acc, err = this.Find(login); err != nil {
+func (model *AccountM) LogIn(login string, password string) (acc *objects.Account, err error) {
+	if acc, err = model.Find(login); err != nil {
 		return nil, err
 	}
 	if !utils.CmpPassword(password, acc.Salt, acc.HashedPassword) {

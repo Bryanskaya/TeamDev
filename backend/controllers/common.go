@@ -13,7 +13,6 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-
 func initControllers(r *mux.Router, m *models.Models) {
 	r.Use(utils.LogHandler)
 	r.Use(auth.JwtAuthentication)
@@ -44,8 +43,8 @@ func RunSwagger(r *mux.Router) {
 
 func RunRouter(r *mux.Router, port uint16) error {
 	c := cors.New(cors.Options{
-        AllowedOrigins: []string{"http://localhost:3000"},
-        AllowCredentials: true,
+		AllowedOrigins:   []string{"http://localhost:3000"},
+		AllowCredentials: true,
 		AllowedMethods: []string{
 			http.MethodGet,
 			http.MethodPost,
@@ -55,9 +54,9 @@ func RunRouter(r *mux.Router, port uint16) error {
 			http.MethodOptions,
 			http.MethodHead,
 		},
-		AllowedHeaders: []string{"Accept", "Accept-Language", "Content-Type", "Content-Language", "Origin", "Content-Type","content-type","Origin", "Accept"},
-    })
-	
+		AllowedHeaders: []string{"Accept", "Accept-Language", "Content-Type", "Content-Language", "Origin", "Content-Type", "content-type", "Origin", "Accept"},
+	})
+
 	handler := c.Handler(r)
 	return http.ListenAndServe(fmt.Sprintf(":%d", port), handler)
 }

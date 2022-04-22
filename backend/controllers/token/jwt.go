@@ -12,7 +12,7 @@ import (
 )
 
 type Token struct {
-	Login	string
+	Login string
 	jwt.StandardClaims
 }
 
@@ -87,7 +87,7 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 			return []byte(utils.Config.TokenPassword), nil
 		})
 
-		if err != nil || !token.Valid { 
+		if err != nil || !token.Valid {
 			responses.JwtAccessDenied(w)
 			return
 		}
@@ -100,5 +100,5 @@ var JwtAuthentication = func(next http.Handler) http.Handler {
 		FillCookie(w, tk.Login)
 
 		next.ServeHTTP(w, r)
-	}) 
-	} 
+	})
+}
