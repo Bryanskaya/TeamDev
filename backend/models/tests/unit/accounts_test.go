@@ -16,7 +16,7 @@ import (
 
 
 // Find account
-func TestFind(t *testing.T) {
+func TestFindAccount(t *testing.T) {
 	t.Run("account exists", func(t *testing.T) {
 		db, err := tests.StubConnecton()
 		if err != nil {
@@ -180,7 +180,7 @@ func TestLogin(t *testing.T) {
 }
 
 // Create account
-func TestCreate(t *testing.T) {
+func TestCreateAccount(t *testing.T) {
 	t.Run("successful operation", func(t *testing.T) {
 		mockRep := new(mocks.AccountsRep)
 		model := models.NewAccount(mockRep, nil)

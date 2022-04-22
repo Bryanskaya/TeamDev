@@ -15,10 +15,10 @@ type AccountBuilder struct {
 func newAccountBuilder() *AccountBuilder {
 	return new(AccountBuilder)
 }
-func (this *AccountBuilder) Build() *objects.Account {
-	this.Salt, this.HashedPassword = utils.HashPassword(this.Login, this.Salt)
-	return &objects.Account{Login: this.Login, Role: this.Role,
-		Salt: this.Salt, HashedPassword: this.HashedPassword}
+func (builder *AccountBuilder) Build() *objects.Account {
+	builder.Salt, builder.HashedPassword = utils.HashPassword(builder.Login, builder.Salt)
+	return &objects.Account{Login: builder.Login, Role: builder.Role,
+		Salt: builder.Salt, HashedPassword: builder.HashedPassword}
 }
 
 /*
@@ -61,11 +61,11 @@ func (AccountMother) Obj2() *objects.Account {
 	return b.Build()
 }
 
-func (this AccountMother) All() []objects.Account {
+func (mother AccountMother) All() []objects.Account {
 	objArr := []objects.Account{
-		*this.Obj0(),
-		*this.Obj1(),
-		*this.Obj2(),
+		*mother.Obj0(),
+		*mother.Obj1(),
+		*mother.Obj2(),
 	}
 	return objArr
 }
