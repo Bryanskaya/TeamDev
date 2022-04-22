@@ -25,9 +25,9 @@ func (Recipe) TableName() string {
 	return "recipes"
 }
 
-func (this *Recipe) ToDTO() *RecipeDTO {
+func (obj *Recipe) ToDTO() *RecipeDTO {
 	dto := new(RecipeDTO)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, dto)
 	return dto
 }
@@ -51,13 +51,13 @@ type RecipeDTO struct {
 	PicUrl      string `json:"pic_url"`
 }
 
-func (this *RecipeDTO) ToModel() *Recipe {
+func (obj *RecipeDTO) ToModel() *Recipe {
 	mod := new(Recipe)
-	if this.CreatedAt == "" {
-		this.CreatedAt = "0001-01-01T00:00:00.000Z"
+	if obj.CreatedAt == "" {
+		obj.CreatedAt = "0001-01-01T00:00:00.000Z"
 	}
 
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, mod)
 	return mod
 }

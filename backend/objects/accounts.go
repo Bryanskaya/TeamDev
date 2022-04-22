@@ -23,9 +23,9 @@ func (Account) TableName() string {
 	return "accounts"
 }
 
-func (this *Account) ToDTO() *AccountDTO {
+func (obj *Account) ToDTO() *AccountDTO {
 	dto := new(AccountDTO)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, dto)
 	return dto
 }
@@ -38,11 +38,11 @@ func (Account) ArrToDTO(src []Account) []AccountDTO {
 	return dst
 }
 
-func (this *AccountDTO) ToModel() *Account {
+func (obj *AccountDTO) ToModel() *Account {
 	mod := new(Account)
 
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, mod)
-	mod.HashedPassword = this.Password
+	mod.HashedPassword = obj.Password
 	return mod
 }

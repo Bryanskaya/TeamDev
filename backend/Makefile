@@ -1,6 +1,7 @@
 all: swagger build test
 
 build: . logs temp
+	gofmt -w .
 	go build -o .\temp .
 
 swagger: ./controllers docs

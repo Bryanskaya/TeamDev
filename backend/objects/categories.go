@@ -18,9 +18,9 @@ type CategoryDTO struct {
 func (Category) TableName() string {
 	return "categories"
 }
-func (this *Category) ToDTO() *CategoryDTO {
+func (obj *Category) ToDTO() *CategoryDTO {
 	dto := new(CategoryDTO)
-	jsonStr, _ := json.Marshal(this)
+	jsonStr, _ := json.Marshal(obj)
 	json.Unmarshal(jsonStr, dto)
 	return dto
 }
@@ -32,9 +32,9 @@ func (Category) ArrToDTO(src []Category) []CategoryDTO {
 	return dst
 }
 
-func (this *CategoryDTO) ToModel() *Category {
+func (obj *CategoryDTO) ToModel() *Category {
 	mod := new(Category)
-	mod.Title = strings.ToLower(this.Title)
+	mod.Title = strings.ToLower(obj.Title)
 	return mod
 }
 
