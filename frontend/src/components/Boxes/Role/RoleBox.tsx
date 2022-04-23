@@ -8,22 +8,14 @@ import ChoiceRole from "../ChoiceRole";
 import GetRole from "postAPI/accounts/GetRole";
 import { useCookies } from "react-cookie";
 
-export interface AuthActionsProps {
+export interface RoleBoxProps {
   login: string;
+  role: string
 }
-const RoleBox: React.FC<AuthActionsProps> = (props) => {
+const RoleBox: React.FC<RoleBoxProps> = (props) => {
   let [cookie] = useCookies(["role"]);
   const [expanded, setExpanded] = React.useState(false);
-  const [role, change] = React.useState("");
-
-  async function getRole() {
-    var data = await GetRole(props.login);
-    if (data.status === 200) {
-      change(data.content);
-    }
-  }
-
-  getRole();
+  const [role, change] = React.useState(props.role);
 
   if (!expanded) {
     return (
@@ -43,7 +35,7 @@ const RoleBox: React.FC<AuthActionsProps> = (props) => {
       <ChoiceRole
         login={props.login}
         role={role}
-        collapse={() => setExpanded(false)}
+        collapse={(newRole: string) => {setExpanded(false); change(newRole)}}
       />
     );
   }
