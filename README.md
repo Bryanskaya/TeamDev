@@ -4,3 +4,10 @@
 
 - Документация проекта в [**Wiki**](https://github.com/Bryanskaya/TeamDev/wiki)
 - issue-трекер в [**Projects**](https://github.com/Bryanskaya/TeamDev/projects/1)
+
+# Запуск
+
+```console
+docker-compose up --build -d
+docker image prune -f
+```
