@@ -89,6 +89,22 @@ func (_m *AccountsRep) FindLikedRecipe(id_rcp int) ([]objects.Account, error) {
 	return r0, r1
 }
 
+// GetAll provides a mock function with given fields:
+func (_m *AccountsRep) GetAll() []objects.Account {
+	ret := _m.Called()
+
+	var r0 []objects.Account
+	if rf, ok := ret.Get(0).(func() []objects.Account); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]objects.Account)
+		}
+	}
+
+	return r0
+}
+
 // UpdateRole provides a mock function with given fields: login, role
 func (_m *AccountsRep) UpdateRole(login string, role string) error {
 	ret := _m.Called(login, role)
