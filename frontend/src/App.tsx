@@ -8,6 +8,7 @@ import Login from "pages/Login";
 import SignUp from "pages/Signup";
 import RecipeInfoPage from "pages/Recipe/RecipeInfo";
 import AllRecipesPage from "pages/Recipe/AllRecipes";
+import UsersPage from "pages/Users/UsersPage";
 import AuthorRecipesPage from "pages/Recipe/AuthorRecipes";
 import LikedRecipesPage from "pages/Recipe/LikedRecipes";
 import CategoryPage from "pages/Category";
@@ -39,13 +40,16 @@ function Routing() {
       <Route path="/me/likes" element={<LikedRecipesPage/>}/>
       <Route path="/me/recipes" element={<AuthorRecipesPage/>}/>
 
+      <Route path="/accounts/:login/recipes" element={<AuthorRecipesPage/>}/>
+      <Route path="/accounts/:login/likes" element={<LikedRecipesPage/>}/>
+
       <Route path="/auth/signin" element={<Login/>}/>
       <Route path="/auth/signup" element={<SignUp/>}/>
 
       <Route path="/recipes/:id" element={<RecipeInfoPage />}/>
 
-      <Route path="/users" element={"users"}/>
       <Route path="/categories/:title" element={<CategoryPage />}/>
+      <Route path="/users" element={<UsersPage />}/>
 
       <Route path="*" element={<NotFound />}/>
     </Routes>
