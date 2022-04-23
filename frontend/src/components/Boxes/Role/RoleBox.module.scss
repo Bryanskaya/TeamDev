@@ -1,0 +1,32 @@
+@import "/src/styles/variables.scss";
+
+.user-act {
+    @include round-box();
+    width: 190px;  
+    height: 40px;
+    align-items: center;
+    justify-content:space-between;
+    border-color: $colorAccent1;
+
+    padding-inline-start: 8px;
+    padding-inline-end: 8px;
+
+    div, a {
+        margin-top: auto;
+        margin-bottom: auto;
+        cursor: pointer;
+    }
+
+    p {
+        @include text-body($color:$colorText);
+        margin-left: 2px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.user-expanded {
+    @extend .user-act;
+    width: 190px;  
+    height: 80px;
+}
