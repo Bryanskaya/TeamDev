@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import RecipeMap from "pages/Recipe/RecipeMap";
+import RecipeMap from "components/RecipeMap";
 import GetRecipes from "postAPI/categories/GetRecipes";
 import React from "react";
 import { NavigateFunction, Params } from "react-router-dom";

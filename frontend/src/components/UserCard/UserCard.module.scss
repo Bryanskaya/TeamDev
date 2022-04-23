@@ -1,0 +1,63 @@
+@import "/src/styles/variables.scss";
+@import "/src/components/LoginBox/LoginBox.module.scss";
+
+.main_box {
+    @include round-box();
+    width: 480px;
+    height: 280px;
+    border-color: $colorTitle;
+    align-items: stretch;
+    padding: 10px;
+    justify-content: center;
+
+    >div {
+        align-items: flex-start
+    }
+}
+
+.role {
+    >p {
+        @include text-caption();
+        width: 100%;
+        align-items: flex-start;
+        padding-bottom: 0px;
+    }
+
+    >div {
+        margin-top: 0 !important;
+    }
+}
+
+.info {
+    @extend .role;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 36px;
+    >div, a>div {
+        width: 250px;
+        height: 40px;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    div:nth-child(2) {
+        margin-bottom: 46px;
+    }
+
+    >.recipes {
+        margin-bottom: 17px;
+    }
+}
+
+.info_box {
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: column;
+    margin: 10px;
+}
+

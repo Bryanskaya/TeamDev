@@ -1,0 +1,24 @@
+@import "/src/styles/variables.scss";
+@import "/src/components/Boxes/Role/RoleBox.module.scss";
+
+.user-expanded {
+  @extend .user-act;
+  height: 80px;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  > a {
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    height: 50%;
+    padding-top: 3px;
+    padding-right: 22px;
+  }
+  > a:hover {
+    background: $colorBgAlt;
+  }
+}

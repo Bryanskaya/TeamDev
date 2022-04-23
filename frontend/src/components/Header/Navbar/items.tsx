@@ -4,9 +4,10 @@ export const navItems = {
     ],
     'admin': [
         { name: "Рецепты", ref: "/" },
-        { name: "Пользователи", ref: "#" },
+        { name: "Пользователи", ref: "/users" },
     ],
     'user': [
         { name: "Рецепты", ref: "/" },
+        { name: "Пользователи", ref: "/users" },
     ],
 }

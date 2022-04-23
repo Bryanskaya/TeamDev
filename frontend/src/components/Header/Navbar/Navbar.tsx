@@ -14,7 +14,7 @@ import NoauthActions from "./NoauthActions";
 export interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = () => {
     let [cookie, , removeCookie] = useCookies(['role', 'login', 'token']);
-    let role = cookie.login ? 'admin' : ''
+    let role = cookie.role ? cookie.role : ''
 
     const [items, ] = React.useState(navItems[role]);
     const logout = () => {

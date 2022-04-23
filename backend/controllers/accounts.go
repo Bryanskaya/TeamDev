@@ -23,7 +23,9 @@ func InitAccount(r *mux.Router, model *models.AccountM) {
 	r.HandleFunc("/accounts/login", ctrl.LogIn).Methods("POST")
 	r.HandleFunc("/accounts/logout", ctrl.LogOut).Methods("POST")
 	r.HandleFunc("/accounts", ctrl.add).Methods("POST")
+	r.HandleFunc("/accounts", ctrl.getAllUsers).Methods("GET")
 	r.HandleFunc("/accounts/{login}", ctrl.get).Methods("GET")
+	r.HandleFunc("/accounts/{login}/role", ctrl.getRole).Methods("GET")
 	r.HandleFunc("/accounts/{login}/role", ctrl.patch).Methods("PATCH")
 }
 
@@ -113,6 +115,30 @@ func (ctrl *account) get(w http.ResponseWriter, r *http.Request) {
 
 	data, _ := ctrl.model.Find(login)
 	responses.JsonSuccess(w, data.ToDTO())
+}
+
+// @Tags Accounts
+// @Router /accounts [get]
+// @Summary Retrieves all accounts
+// @Produce json
+// @Success 200 {object} []objects.AccountDTO
+func (ctrl *account) getAllUsers(w http.ResponseWriter, r *http.Request) {
+	data := ctrl.model.GetAll()
+	responses.JsonSuccess(w, objects.Account{}.ArrToDTO(data))
+}
+
+// @Tags Accounts
+// @Router /accounts/{login}/role [get]
+// @Summary Retrieves account's role
+// @Param login path string true "Account login"
+// @Produce json
+// @Success 200 {string} string
+func (ctrl *account) getRole(w http.ResponseWriter, r *http.Request) {
+	urlParams := mux.Vars(r)
+	login := urlParams["login"]
+
+	role, _ := ctrl.model.GetRole(login)
+	responses.JsonSuccess(w, role)
 }
 
 // @Tags Accounts

@@ -60,6 +60,19 @@ info:
   version: "0.1"
 paths:
   /accounts:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/objects.AccountDTO'
+            type: array
+      summary: Retrieves all accounts
+      tags:
+      - Accounts
     post:
       parameters:
       - description: Account data
@@ -142,6 +155,23 @@ paths:
       tags:
       - Recipes
   /accounts/{login}/role:
+    get:
+      parameters:
+      - description: Account login
+        in: path
+        name: login
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Retrieves account's role
+      tags:
+      - Accounts
     patch:
       parameters:
       - description: Account login
