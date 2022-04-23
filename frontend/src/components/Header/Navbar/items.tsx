@@ -8,5 +8,6 @@ export const navItems = {
     ],
     'user': [
         { name: "Рецепты", ref: "/" },
+        { name: "Пользователи", ref: "/users" },
     ],
 }
