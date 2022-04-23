@@ -232,6 +232,32 @@ var doc = `{
             }
         },
         "/accounts/{login}/role": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Retrieves account's role",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Account login",
+                        "name": "login",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "patch": {
                 "produces": [
                     "application/json"

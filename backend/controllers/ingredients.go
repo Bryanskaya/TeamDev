@@ -61,7 +61,7 @@ func (ctrl *ingredientCtrl) getByRecipe(w http.ResponseWriter, r *http.Request) 
 // @Param id path int true "Recipe's id"
 // @Param recipes body []objects.IngredientDTO true "Ingredients"
 // @Produce json
-// @Success 201 Successful opeartion
+// @Success 201 Successful operation
 // @Failure 400 Invalid value
 func (ctrl *ingredientCtrl) postToRecipe(w http.ResponseWriter, r *http.Request) {
 	urlParams := mux.Vars(r)
