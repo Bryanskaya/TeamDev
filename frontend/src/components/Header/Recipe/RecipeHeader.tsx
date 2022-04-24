@@ -2,7 +2,6 @@ import React from "react";
 import Header from "components/Header";
 import { TitlesProps } from "components/Header/Titles/Titles";
 import { useParams } from "react-router-dom";
-import { capitalize } from "functions";
 import AuthorBox from "components/Boxes/Author";
 import GetRecipe from "postAPI/recipes/Get";
 

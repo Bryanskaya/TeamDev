@@ -1,8 +1,13 @@
 import axios from "axios";
 import { backUrl } from "..";
 import { Account } from "types/Account";
+import { CookieSetOptions } from "universal-cookie";
 
-export const Login = async function (data: Account, setCookie) {
+interface resp {
+  status: number
+}
+
+export const Login = async function (data: Account, setCookie): Promise<resp> {
   const response = await axios
     .post(backUrl + `/accounts/login`, data, { withCredentials: true })
     .then((data) => data)

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    Box,
     chakra
 } from "@chakra-ui/react";
 
