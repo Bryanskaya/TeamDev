@@ -1,13 +1,13 @@
 package models_test
 
 import (
-	"api/recipes/errors"
-	"api/recipes/mocks"
-	"api/recipes/models"
-	"api/recipes/objects"
-	"api/recipes/objects/dbuilder"
-	"api/recipes/repository"
-	"api/recipes/tests"
+	"api/teamdev/errors"
+	"api/teamdev/mocks"
+	"api/teamdev/models"
+	"api/teamdev/models/tests"
+	"api/teamdev/objects"
+	"api/teamdev/objects/builder"
+	"api/teamdev/repository"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -122,7 +122,6 @@ func TestGetByRecipe(t *testing.T) {
 		assert.Nil(t, err, "Get has unexpected error")
 		assert.ElementsMatch(t, resArr, expArr)
 	})
-
 }
 
 // Create ingredient
