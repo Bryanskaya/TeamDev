@@ -726,23 +726,23 @@ func TestDelRecipe(t *testing.T) {
 	t.Run("recipe doesn't exist", func(t *testing.T) {
 		mockRec := new(mocks.RecipesRep)
 		mockAcc := new(mocks.AccountsRep)
-	
+
 		allM := new(models.Models)
 		allM.Recipes = models.NewRecipe(mockRec, allM)
 		allM.Accounts = models.NewAccount(mockAcc, allM)
-	
+
 		objRcp := dbuilder.RecipeMother{}.Obj2()
 		objAdmin := dbuilder.AccountMother{}.Obj0()
 		// objAuthor := dbuilder.AccountMother{}.Obj1()
-	
+
 		mockAcc.On("Find", objAdmin.Login).Return(objAdmin, nil).Once()
 		mockRec.On("FindById", objRcp.Id).Return(nil, errors.RecordNotFound).Once()
-	
+
 		// mockAcc.On("Find", objRcp.Author).Return(objAuthor, nil).Once()
 		// mockRec.On("Delete", objRcp.Id).Return(nil).Once()
-	
+
 		err := allM.Recipes.DeleteRecipe(objRcp.Id, objAdmin.Login)
-	
+
 		assert.Equal(t, errors.UnknownRecipe, err, "Deletion a recipe has unexpected error")
 		mockRec.AssertExpectations(t)
 		mockAcc.AssertExpectations(t)
@@ -751,18 +751,18 @@ func TestDelRecipe(t *testing.T) {
 	t.Run("account doesn't exist", func(t *testing.T) {
 		mockRec := new(mocks.RecipesRep)
 		mockAcc := new(mocks.AccountsRep)
-	
+
 		allM := new(models.Models)
 		allM.Recipes = models.NewRecipe(mockRec, allM)
 		allM.Accounts = models.NewAccount(mockAcc, allM)
-	
+
 		objRcp := dbuilder.RecipeMother{}.Obj2()
 		objAdmin := dbuilder.AccountMother{}.Obj0()
-	
+
 		mockAcc.On("Find", objAdmin.Login).Return(nil, errors.RecordNotFound).Once()
-	
+
 		err := allM.Recipes.DeleteRecipe(objRcp.Id, objAdmin.Login)
-	
+
 		assert.Equal(t, errors.RecordNotFound, err, "Deletion a recipe has unexpected error")
 		mockRec.AssertExpectations(t)
 		mockAcc.AssertExpectations(t)

@@ -1,7 +1,11 @@
 import axios from "axios";
 import { backUrl } from "..";
 
-export const ChangeRole = async function(login: string, role: string) {
+interface resp {
+    status: number
+}
+
+export const ChangeRole = async function(login: string, role: string): Promise<resp> {
     var body = {'role':role};
     const response = await axios.patch(backUrl + `/accounts/${login}/role`, body).catch((error) => {
         return {

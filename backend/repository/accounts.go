@@ -14,8 +14,8 @@ type AccountsRep interface {
 	Find(login string) (*objects.Account, error)
 	FindLikedRecipe(id_rcp int) ([]objects.Account, error)
 
-	GetAll() ([]objects.Account)
-	
+	GetAll() []objects.Account
+
 	UpdateRole(login, role string) error
 }
 

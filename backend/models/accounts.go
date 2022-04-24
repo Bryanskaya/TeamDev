@@ -93,7 +93,7 @@ func (this *AccountM) GetAll() []objects.Account {
 	return temp
 }
 
-func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error){
+func (this *AccountM) LogIn(login string, password string) (acc *objects.Account, err error) {
 	if acc, err = this.Find(login); err != nil {
 		return nil, err
 	}

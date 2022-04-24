@@ -5,7 +5,6 @@ import styles from "./RoleBox.module.scss";
 
 import DownArrowIcon from "components/Icons/DownArrow";
 import ChoiceRole from "../ChoiceRole";
-import GetRole from "postAPI/accounts/GetRole";
 import { useCookies } from "react-cookie";
 
 export interface RoleBoxProps {

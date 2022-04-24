@@ -1,4 +1,4 @@
-import { Box, ColorModeScript } from "@chakra-ui/react"
+import { ColorModeScript } from "@chakra-ui/react"
 import * as React from "react"
 import './App.css';
 import ReactDOM from "react-dom"

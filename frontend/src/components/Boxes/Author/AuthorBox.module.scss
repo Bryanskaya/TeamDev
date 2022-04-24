@@ -1,0 +1,33 @@
+@import "/src/styles/variables.scss";
+
+.author_box {
+    @include shape();
+    width: 100%;   
+    height: 40px;
+
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    padding: 0 10px 0 10px;
+
+    background: $colorBg;
+    border-color: $colorAccent3;
+    
+
+    label {
+        @include text-caption();
+        width: 100%;
+        height: 100%;
+        color: $colorText;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+    }
+
+    svg {
+        width: 25px;
+        height: 20px;
+        // margin: 10px 0 10px 0;
+    }
+}
