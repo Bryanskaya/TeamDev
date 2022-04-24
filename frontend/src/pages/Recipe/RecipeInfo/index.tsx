@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import { NavigateFunction, Params, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RecipeInfoPage from "./RecipeInfoPage";
 
 const RecipeInfo = () => {

@@ -19,4 +19,4 @@ const CategoryHeader: React.FC<TitlesProps> = (props) => {
     );
 }
 
-export default CategoryHeader;
+export default React.memo(CategoryHeader);

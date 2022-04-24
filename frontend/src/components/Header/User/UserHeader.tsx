@@ -4,7 +4,7 @@ import { TitlesProps } from "components/Header/Titles/Titles";
 import { useParams } from "react-router-dom";
 
 
-const RecipeHeader: React.FC<TitlesProps> = (props) => {
+const UserHeader: React.FC<TitlesProps> = (props) => {
     let {
         title = props.title,
         ...rest
@@ -18,4 +18,4 @@ const RecipeHeader: React.FC<TitlesProps> = (props) => {
     );
 }
 
-export default RecipeHeader;
+export default React.memo(UserHeader);
