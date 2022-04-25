@@ -1,6 +1,6 @@
 import theme from "styles/extendTheme";
 import React from "react";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const EmptyLike: React.FC<LogoProps> = (props) => {
     var w = props.width ? props.width: "18px";

@@ -5,14 +5,16 @@ import "api/teamdev/objects"
 type CategoryBuilder struct {
 	Title string
 }
-func newCategoryBuilder() *CategoryBuilder { 
-	return new(CategoryBuilder) 
+
+func newCategoryBuilder() *CategoryBuilder {
+	return new(CategoryBuilder)
 }
-func (this *CategoryBuilder) Build() *objects.Category { 
-	return &objects.Category{Title: this.Title} 
+func (this *CategoryBuilder) Build() *objects.Category {
+	return &objects.Category{Title: this.Title}
 }
 
 type CategoryMother struct{}
+
 func (CategoryMother) Obj0() *objects.Category {
 	b := newCategoryBuilder()
 	b.Title = "завтраки"
@@ -25,7 +27,7 @@ func (CategoryMother) Obj1() *objects.Category {
 }
 func (this CategoryMother) All() []objects.Category {
 	objArr := []objects.Category{
-		*this.Obj0(), 
+		*this.Obj0(),
 		*this.Obj1(),
 	}
 	return objArr

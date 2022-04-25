@@ -1,9 +1,9 @@
 import theme from "styles/extendTheme";
 import React from "react";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const OkIcon: React.FC<LogoProps> = (props) => {
-    const {width="20px", height="20px", fill= theme.colors['accent-2'], ...rest} = props
+    const {width="20px", height="20px", fill= theme.colors['accent-2']} = props
     return (
         <svg width={width} height={height} fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill={fill} d="M10 0C4.486 0 0 4.486 0 10C0 15.514 4.486 20 10 20C15.514 20 20 15.514 20 10C20 4.486 15.514 0 10 0ZM10 18.1818C5.48848 18.1818 1.81818 14.5115 1.81818 10C1.81818 5.48855 5.48848 1.81818 10 1.81818C14.5115 1.81818 18.1818 5.48855 18.1818 10C18.1818 14.5115 14.5115 18.1818 10 18.1818Z"/>

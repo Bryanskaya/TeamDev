@@ -10,7 +10,7 @@ import (
 type CategoriesRep interface {
 	Create(obj *objects.Category) error
 	CreateList(obj []objects.Category) error
-	
+
 	List() []objects.Category
 	Find(ctg string) ([]objects.Category, error)
 	Get(ctg string) (*objects.Category, error)

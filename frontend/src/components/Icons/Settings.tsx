@@ -1,7 +1,7 @@
 import React from "react";
 
 import theme from "styles/extendTheme";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const SettingsIcon: React.FC<LogoProps> = (props) => {
     var w = props.width ? props.width: "25px";

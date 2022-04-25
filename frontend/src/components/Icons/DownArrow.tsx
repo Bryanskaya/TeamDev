@@ -1,6 +1,6 @@
 import theme from "styles/extendTheme";
 import React from "react";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const DownArrowIcon: React.FC<LogoProps> = (props) => {
     const {width="24px", height="14px", fill=theme.colors['title'], style={}, flipped=false} = props

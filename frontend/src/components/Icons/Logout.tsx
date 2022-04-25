@@ -1,6 +1,6 @@
 import theme from "styles/extendTheme";
 import React from "react";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const LogoutIcon: React.FC<LogoProps> = (props) => {
     const {width="30px", height="24px", fill= theme.colors['title']} = props
