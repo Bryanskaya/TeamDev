@@ -9,6 +9,10 @@ export interface AuthActionsProps {
   role: string;
   collapse: (string) => void;
 }
+
+/**
+ * Expanding list for changing user's role
+ */
 const ChoiceRoleBox: React.FC<AuthActionsProps> = (props) => {
   const roles = { admin: "Администратор", user: "Пользователь" };
   const pares = { admin: "user", user: "admin" };

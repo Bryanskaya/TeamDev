@@ -1,6 +1,6 @@
 import theme from "styles/extendTheme";
 import React from "react";
-import IconProps from "./Logo"
+import IconProps from "."
 
 const FullLikeIcon: React.FC<IconProps> = (props) => {
     var w = props.width ? props.width: "18px";

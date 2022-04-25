@@ -1,5 +1,5 @@
 import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 
 import CancelIcon from "components/Icons/Cancel";
 import {Ingredient as IngredientT} from "types/Ingredient";

@@ -3,19 +3,21 @@ package dbuilder
 import "api/teamdev/objects"
 
 type RecipeIngredientBuilder struct {
-	Recipe_id 		int
-	Ingredient_id   string
-	Amount 			string
+	Recipe_id     int
+	Ingredient_id string
+	Amount        string
 }
-func newRecipeIngredientBuilder() *RecipeIngredientBuilder { 
-	return new(RecipeIngredientBuilder) 
+
+func newRecipeIngredientBuilder() *RecipeIngredientBuilder {
+	return new(RecipeIngredientBuilder)
 }
-func (this *RecipeIngredientBuilder) Build() *objects.RecipeIngredient { 
-	return &objects.RecipeIngredient{Recipe_id: this.Recipe_id, 
-		Ingredient_id: this.Ingredient_id, Amount: this.Amount} 
+func (this *RecipeIngredientBuilder) Build() *objects.RecipeIngredient {
+	return &objects.RecipeIngredient{Recipe_id: this.Recipe_id,
+		Ingredient_id: this.Ingredient_id, Amount: this.Amount}
 }
 
 type RecipeIngredientMother struct{}
+
 func (RecipeIngredientMother) Obj0() *objects.RecipeIngredient {
 	b := newRecipeIngredientBuilder()
 	b.Recipe_id = 1
@@ -38,8 +40,8 @@ func (RecipeIngredientMother) Obj2() *objects.RecipeIngredient {
 	return b.Build()
 }
 func (this RecipeIngredientMother) All() []objects.RecipeIngredient {
-	objArr := []objects.RecipeIngredient {
-		*this.Obj0(), 
+	objArr := []objects.RecipeIngredient{
+		*this.Obj0(),
 		*this.Obj1(),
 		*this.Obj2(),
 	}

@@ -1,5 +1,5 @@
 import React from "react";
-import LogoProps from "./Logo"
+import LogoProps from "."
 
 const SearchIcon: React.FC<LogoProps> = (props) => {
     var w = props.width ? props.width: "50px";
