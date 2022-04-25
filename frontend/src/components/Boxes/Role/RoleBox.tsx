@@ -4,7 +4,7 @@ import { Box, Text } from "@chakra-ui/react";
 import styles from "./RoleBox.module.scss";
 
 import DownArrowIcon from "components/Icons/DownArrow";
-import ChoiceRole from "../ChoiceRole";
+import ChoiceRole from "./ChoiceRole";
 import { useCookies } from "react-cookie";
 
 export interface RoleBoxProps {

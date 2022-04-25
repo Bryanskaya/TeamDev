@@ -10,6 +10,9 @@ interface AuthorBoxProps extends React.InputHTMLAttributes<HTMLLabelElement> {
     name: string
 }
 
+/**
+ * Author of recipe link box
+ */
 const AuthorBox: React.FC<AuthorBoxProps> = (props) => {
     const { name = "", ...rest } = props
 

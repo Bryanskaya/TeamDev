@@ -16,7 +16,6 @@ module.exports = {
   sections: [
     {
       name: 'Styleguide',
-      content: './README.md',
       components: 'src/components/Boxes/**/[A-Z]*.tsx',
     }
     ],
