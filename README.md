@@ -7,7 +7,16 @@
 
 # Запуск
 
+1. Создать БД по ![инструкции](/database/README.md)
+1. Запустить Backend-сервер по ![инструкции](/backend/README.md)
+1. Запустить Frontend-сервер по ![инструкции](/frontend/README.md)
+
+ИЛИ 
+
+### Запустить Docker
 ```console
 docker-compose up --build -d
 docker image prune -f
 ```
+
+
