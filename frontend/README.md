@@ -1,2 +1,9 @@
-Install the dependencies : npm install<br>
-Launch in dev mode : npm start
+# Запуск
+
+```console
+# Install the dependencies
+npm install
+
+# Launch in dev mode
+npm start
+```
